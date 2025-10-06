@@ -5,6 +5,5 @@ public class ejercicio2 {
         for (int i = 0; i< n.length; i++) {
             System.out.print(n[i] + " ");
         }
-
     }
 }
