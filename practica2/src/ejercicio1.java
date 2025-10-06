@@ -5,19 +5,21 @@ public class ejercicio1 {
     //Crea un array de 10 posiciones de números con valores pedidos
     // por teclado. Muestra por consola el índice y el valor al que
     // corresponde.
-    public static void main (String[] args){
+    public static void main(String[] args) {
         //Crea un array de 10 posiciones de números con valores pedidos por teclado.
-        Scanner sc =  new Scanner(System.in);
-        int[] arrayInt = new int[10];
-
+        Scanner sc = new Scanner(System.in);
         System.out.println("introduce otro número:");
-        for(int i=0; i<10;){
-            int valor = sc.nextInt();
+        int[] arrayInt = new int[10];
+        for (int i = 0; i< arrayInt.length; i++) {
 
-    //Muestra por consola el índice y el valor al que corresponde.
-            System.out.println("indice " + i++ + " = al valor " + valor);
-
-
+            arrayInt[i] = sc.nextInt();
+        }
+            //Muestra por consola el índice y el valor al que corresponde.
+        for (int i = 0; i < arrayInt.length; i++) {
+            System.out.println("indice " + i + " --> " + arrayInt[i]);
         }
     }
 }
+
+
+
