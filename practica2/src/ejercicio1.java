@@ -6,16 +6,16 @@ public class ejercicio1 {
     // Muestra por consola el índice y el valor al que corresponde.
     public static void main(String[] args) {
         //Crea un array de 10 posiciones de números con valores pedidos por teclado.
-        Scanner sc = new Scanner(System.in);
+        Scanner s = new Scanner(System.in);
         System.out.println("introduce otro número:");
 
-        int[] arrayInt = new int[10];
-        for (int i = 0; i< arrayInt.length; i++) {
-            arrayInt[i] = sc.nextInt();
+        int[] array = new int[10];
+        for (int i = 0; i< array.length; i++) {
+            array[i] = s.nextInt();
         }
 
-        for (int i = 0; i < arrayInt.length; i++) {
-            System.out.println("indice " + i + " --> " + arrayInt[i]);
+        for (int i = 0; i < array.length; i++) {
+            System.out.println("indice " + i + " --> " + array[i]);
         }
     }
 }
