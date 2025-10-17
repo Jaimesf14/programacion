@@ -1,13 +1,16 @@
+import java.util.Scanner;
+
 public class ejercicio3 {
-    //Crea un array que contenga 5 números. Realiza un programa que
-    // te muestre por pantalla SOLO el más pequeño de ellos.
-    public static void main(String[] args){
-        int[] n = {10, 2, 7, 5, 3};
-        for (
-                if (n[0] < n[1]) {
-                    n[1] > n[0];
-                } if (n)
+    public static void main(String[] args) {
+        //Crea un array que contenga 5 números. Realiza un programa que te muestre por pantalla SOLO el más pequeño de ellos.
+
+        Scanner sc = new Scanner(System.in);
+        int[] numero = {10, 25, 5, 32, 12};
+        int menor =  numero[0];
+        for (int i = 1; i < numero.length; i++)
+            if (numero[i] < menor) {
+         menor = numero[i];
         }
+        System.out.println("El número más pequeño es: " + menor);
     }
-
-
+}
