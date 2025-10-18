@@ -9,9 +9,17 @@ public class Ejercicio5 {
         //Crea un array de números donde le indicamos por teclado el tamaño del array
         System.out.println("introduce un número para el tamaño del array:");
         int tamaño = s.nextInt();
+        int suma = 0;
         int[] array = new int[tamaño];
-        for (int i = (int) (Math.random() * 10); i < array.length; i++) {
-            System.out.print(array[i] + " ");
-        }
+        //rellenaremos el array con números aleatorios entre 0 y 9
+        for (int i = 0; i< array.length; i++) {
+            array[i] = (int)(Math.random()*10);
+            //Muestra por pantalla el valor de cada posición
+            System.out.println("Indice" + i + " --> " + array[i] + " ");
+            //Calculamos la suma
+            suma = suma + array[i];
+
+        }//Muestra por pantalla el resultado de la suma de todos los valor
+        System.out.println("Resultado de la suma de todos los valores: " + suma);
     }
 }
