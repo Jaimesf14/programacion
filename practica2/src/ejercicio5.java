@@ -15,7 +15,7 @@ public class ejercicio5 {
         for (int i = 0; i< array.length; i++) {
             array[i] = (int)(Math.random()*10);
             //Muestra por pantalla el valor de cada posición
-            System.out.println("Indice" + i + " --> " + array[i]);
+            System.out.println("Indice " + i + "--> " + array[i]);
             //Calculamos la suma
             suma = suma + array[i];
 
