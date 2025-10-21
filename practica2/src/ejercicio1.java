@@ -7,7 +7,7 @@ public class ejercicio1 {
     public static void main(String[] args) {
         //Crea un array de 10 posiciones de números con valores pedidos por teclado.
         Scanner s = new Scanner(System.in);
-        System.out.println("introduce otro número:");
+        System.out.println("introduce 10 número:");
 
         int[] array = new int[10];
         for (int i = 0; i< array.length; i++) {
