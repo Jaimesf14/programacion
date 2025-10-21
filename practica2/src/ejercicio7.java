@@ -2,10 +2,8 @@ import java.util.Scanner;
 
 public class ejercicio7 {
     public static void main(String[] args) {
-        //Programa Java para leer la altura de N personas y calcular la altura media.
-        // Calcular cuántas personas tienen una altura superior a la media y cuántas tienen una altura
-        // inferior a la media. El valor de N se pide por teclado y debe ser entero positivo.
-
+        //Programa Java que llene un array con 10 números enteros que se leen por teclado.
+        // A continuación calcula y muestra la media de los valores positivos y la de los valores negativos del array.
 
                 Scanner s = new Scanner(System.in);
         System.out.println("Introduce 10 números:");
