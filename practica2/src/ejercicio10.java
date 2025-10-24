@@ -7,7 +7,7 @@ public class ejercicio10 {
         // (usa la clase Scanner). Utiliza un array para los nombres de los alumnos y otro para las notas.
         // ¿Serías capaz de hacerlo con un array BIdimensional?
             Scanner s = new Scanner(System.in);
-            //lista de estudiantes con sus respectivas notas.
+            //Lista de estudiantes con sus respectivas notas.
             String[] nombres={"Manuel","Jesus","Maria","Jaime","Julia"};
             double[] notas = {6.7,7,8.5,5,9};
             String estudiante;
