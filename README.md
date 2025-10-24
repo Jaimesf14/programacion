@@ -6,3 +6,4 @@
 ## 📄 Contenido
 - Practica02
 - PDF resolución ejercicios
+
