@@ -10,6 +10,7 @@ public class ejercicio13 {
         Scanner s = new Scanner(System.in);
         ArrayList<Integer> lista = new ArrayList<>();
         int numeros;
+
         do {
         System.out.println("Introduzca un número por teclado (cuando sea negativo se parará)");
         numeros = s.nextInt();
@@ -22,9 +23,8 @@ public class ejercicio13 {
                 suma += integer;
 
             }
-            System.out.println("Números introducidos: " + numeros);
+            System.out.println("Números introducidos: " + lista);
             System.out.println("Suma total: " + suma);
     }
 }
-
 
