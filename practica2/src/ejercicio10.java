@@ -8,7 +8,7 @@ public class ejercicio10 {
         // ¿Serías capaz de hacerlo con un array BIdimensional?
             Scanner s = new Scanner(System.in);
             //Lista de estudiantes con sus respectivas notas.
-            String[] nombres={"Manuel","Jesus","Maria","Jaime","Julia"};
+            String[] nombres = {"Manuel","Jesus","Maria","Jaime","Julia"};
             double[] notas = {6.7,7,8.5,5,9};
             String estudiante;
             int ultimoEst= nombres.length - 1;
