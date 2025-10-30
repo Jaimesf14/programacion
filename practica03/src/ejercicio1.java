@@ -7,12 +7,12 @@ public class ejercicio1 {
       };
       System.out.println("Array num Columna 1 Columna 2 Columna 3 Columna 4 Columna 5 Columna 6");
         for (int i = 0; i < numeros.length; i++) {
-            System.out.print("Fila " + i + "|");
+            System.out.print("Fila " + i + "   |");
             for (int j = 0; j < numeros[i].length; j++) {
                 if (numeros[i][j] == 1.5){
-                    System.out.print(" ");
+                    System.out.print("         |");
                 } else {
-                    System.out.printf("%-3%3%.0f |", numeros[i][j]);
+                    System.out.printf("%4%-4.0f |", numeros[i][j]);
                 }
             }
             System.out.println(" ");
