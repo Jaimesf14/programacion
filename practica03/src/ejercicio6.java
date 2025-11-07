@@ -9,28 +9,45 @@ public class ejercicio6 {
         Random numaleatorio = new Random();
 
         int[][] numeros = new int[6][10];
-
+        int[] auxiliar = new int[21];
+        for (int i = 0; i < auxiliar.length; i++) {
+                auxiliar[i] = 20 + i;
+        }
+        for (int i = 0; i < auxiliar.length; i++) {
+            int j = numaleatorio.nextInt(auxiliar.length);
+            int temp = auxiliar[i];
+            auxiliar[i] = auxiliar[j];
+            auxiliar[j] = temp;
+        }
+        int indice = 0;
         for (int i = 0; i < numeros.length; i++) {
             for (int j = 0; j < numeros[i].length; j++) {
-                numeros[i][j] = numaleatorio.nextInt(40 - 20 + 1)+20;
-
+                if(indice < auxiliar.length){
+                    numeros[i][j] = auxiliar[indice];
+                    indice++;
+                } else {
+                    numeros[i][j] = 0;
+                }
             }
         }
 
+
         int sumatotal = 0;
-        System.out.println("-------------------------------------------------------------------------------------------------------------------------------------------------------------------------");
+        System.out.println("------------------------------------------------------------------------------------------------------------------------------------------------------------------------");
         for (int i = 0; i < numeros.length; i++) {
             int sumafila = 0;
             for (int j = 0; j < numeros[i].length; j++) {
-
                 sumafila += numeros[i][j];
-                System.out.printf("| %-13d", numeros[i][j]);
+                if (numeros[i][j] == 0) {
+                    System.out.printf("| %-13s", " ");
+                } else {
+                    System.out.printf("| %-13d", numeros[i][j]);
 
-
+                }
             }
             System.out.print("|Fila " + i + ": " + sumafila + "     |");
             System.out.println(" ");
-            System.out.println("|--------------+--------------+--------------+--------------+--------------+--------------+--------------+--------------+--------------+--------------+------------------");
+            System.out.println("|--------------+--------------+--------------+--------------+--------------+--------------+--------------+--------------+--------------+--------------+-----------------");
             sumatotal += sumafila;
 
         }
@@ -41,11 +58,11 @@ public class ejercicio6 {
                 sumacolumna += numeros[i][j];
             }
 
-            System.out.printf("|Columna" + j + ": " + sumacolumna);
+            System.out.printf("|Columna" + j + ":   " + sumacolumna);
             sumatotal += sumacolumna;
         }
         System.out.println("|Suma total: " + sumatotal + "|");
-        System.out.println("-------------------------------------------------------------------------------------------------------------------------------------------------------------------------");
+        System.out.println("------------------------------------------------------------------------------------------------------------------------------------------------------------------------");
 
         int menor = numeros[0][0];
         int mayor = numeros[0][0];
@@ -72,6 +89,8 @@ public class ejercicio6 {
         }
         System.out.println("Valor máximo: " + mayor + " en la posición [" + posmayorfila + "][" + posmayorcol + "]");
         System.out.println("Valor mínimo: " + menor + " en la posición [" + posmenorfila + "][" + posmenorcol + "]");
+        }
     }
-}
+
+
 
