@@ -8,7 +8,7 @@ public class ejercicio2 {
 
     public static void main(String[] args) {
         Scanner s = new Scanner(System.in);
-        /*System.out.println("introduce 20 número:");
+        System.out.println("introduce 20 número:");
 
         int[][] numeros = new int[4][5];
 
@@ -17,16 +17,17 @@ public class ejercicio2 {
                 numeros[i][j] = s.nextInt();
 
             }
-        }*/
+        }
+        /*
         int[][] numeros = {
                 {11, 12, 13, 14, 15},
                 {16, 17, 18, 19, 10},
                 {21, 22, 23, 14, 15},
                 {16, 17, 18, 19, 20}
         };
+        */
+
         int sumatotal = 0;
-
-
         System.out.println("----------------------------------------------------------------------------------");
         for (int i = 0; i < numeros.length; i++) {
             int sumafila = 0;
