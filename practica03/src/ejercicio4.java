@@ -2,6 +2,8 @@ import java.util.Random;
 import java.util.Scanner;
 
 public class ejercicio4 {
+    //Modifica el programa anterior de tal forma que las sumas parciales y la suma total aparezcan en la pantalla con
+    // un pequeño retraso, dando la impresión de que el ordenador se queda “pensando” antes de mostrar los números.
     public static void main(String[] args) throws InterruptedException {
         Random numaleatorio = new Random();
 
@@ -13,14 +15,6 @@ public class ejercicio4 {
 
             }
         }
-        /*
-        int[][] numeros = {
-                {11, 12, 13, 14, 15},
-                {16, 17, 18, 19, 10},
-                {21, 22, 23, 14, 15},
-                {16, 17, 18, 19, 20}
-        };
-        */
 
         int sumatotal = 0;
         System.out.println("----------------------------------------------------------------------------------------------");
@@ -33,6 +27,7 @@ public class ejercicio4 {
 
 
             }
+            //Ponemos el thread.sleep(1000), para que aparezca un retraso de 1 seg en la suma de las filas.
             Thread.sleep(1000);
             System.out.print("|Fila " + i + ": " + sumafila + "     |");
             System.out.println(" ");
@@ -53,6 +48,7 @@ public class ejercicio4 {
 
 
         }
+        //Ponemos el thread.sleep(1000), para que aparezca un retraso de 1 seg en la suma total.
         Thread.sleep(1000);
         System.out.println("|Suma total: "+ sumatotal+"|");
         System.out.print("----------------------------------------------------------------------------------------------");
