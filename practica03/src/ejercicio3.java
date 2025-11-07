@@ -23,19 +23,19 @@ public class ejercicio3 {
         */
 
         int sumatotal = 0;
-        System.out.println("----------------------------------------------------------------------------------");
+        System.out.println("----------------------------------------------------------------------------------------------");
         for (int i = 0; i < numeros.length; i++) {
             int sumafila = 0;
             for (int j = 0; j < numeros[i].length; j++) {
 
                 sumafila += numeros[i][j];
-                System.out.printf("| %-11d", numeros[i][j]);
+                System.out.printf("| %-13d", numeros[i][j]);
 
 
             }
             System.out.print("|Fila " + i + ": " + sumafila + "     |");
             System.out.println(" ");
-            System.out.println("|------------+------------+------------+------------+------------+---------------|");
+            System.out.println("|--------------+--------------+--------------+--------------+--------------+-----------------|");
             sumatotal += sumafila;
 
         }
@@ -53,7 +53,7 @@ public class ejercicio3 {
 
 
         } System.out.println("|Suma total: "+ sumatotal+"|");
-        System.out.print("----------------------------------------------------------------------------------");
+        System.out.print("----------------------------------------------------------------------------------------------");
     }
 }
 
