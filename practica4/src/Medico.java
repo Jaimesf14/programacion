@@ -77,6 +77,7 @@ public class Medico {
     }
 
     public double calcularSueldoNeto(double retencion){
-
+        return sueldoBruto - sueldoBruto * (5/100);
     }
+    public double
 }
