@@ -1,3 +1,5 @@
+import java.time.Year;
+
 public class Medico {
     //atributos
     private  String DNI;
@@ -5,10 +7,11 @@ public class Medico {
     private  int edad;
     private  String sexo;
     private double sueldoBruto;
-    private String fechaInicio;
+    private int fechaInicio;
     private Area area;
+    private int aniosAntiguedad;
     //constructor
-    public Medico(String DNI, String nom, int ed, String sex, double sueldo, String fechI, Area area){
+    public Medico(String DNI, String nom, int ed, String sex, double sueldo, int fechI, Area area, int antiguedad){
         this.DNI = DNI;
         this.nombre = nom;
         this.edad = ed;
@@ -16,6 +19,7 @@ public class Medico {
         this.sueldoBruto = sueldo;
         this.fechaInicio = fechI;
         this.area = area;
+        this.aniosAntiguedad = antiguedad;
         area.incrementarNumMedicos();
     }
     //Metodo get y set
@@ -60,11 +64,11 @@ public class Medico {
         this.sueldoBruto = sueldoBruto;
     }
 
-    public String getFechaInicio() {
+    public int getFechaInicio() {
         return fechaInicio;
     }
 
-    public void setFechaInicio(String fechaInicio) {
+    public void setFechaInicio(int fechaInicio) {
         this.fechaInicio = fechaInicio;
     }
 
@@ -76,8 +80,37 @@ public class Medico {
         this.area = area;
     }
 
+    //calculo sueldo neto
     public double calcularSueldoNeto(double retencion){
-        return sueldoBruto - sueldoBruto * (5/100);
+        //suponemos que el porcetaje de retencion es del 5%
+        return this.sueldoBruto - this.sueldoBruto * (retencion/100);
     }
-    public double
+    //Calculamos los años de antiguedad
+    public int getAniosAntiguedad() {
+        return this.aniosAntiguedad;
+    }
+
+    public void setAniosAntiguedad(int aniosAntiguedad) {
+        //Creamos lavariable anio, y le selccionamos el año actual.
+        int anio = Year.now().getValue();
+        this.aniosAntiguedad = fechaInicio - anio;
+    }
+
+    public double calcularImpuestosAnuales(double tasaImpositiva){
+        //Suponemos que el porcentaje de la tasa impositiva es de un 25%
+        return this.sueldoBruto * (25/100);
+    }
+
+    public boolean esMayorDeEdad(int mayoriaEdad){
+        return this.edad >= mayoriaEdad;
+    }
+    public double proximoAumento(double porcentajeAumento, int aniosRequeridos){
+        double resultado = sueldoBruto; /*creo que va ahi sueldo neto*/
+        if (aniosAntiguedad >= aniosRequeridos) {
+            double sueldoBrutoAumentado = this.sueldoBruto + (porcentajeAumento*this.sueldoBruto);
+            resultado = sueldoBrutoAumentado;
+        }
+        return resultado;
+    }
+
 }
