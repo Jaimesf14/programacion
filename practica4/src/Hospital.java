@@ -5,13 +5,13 @@ public class Hospital {
     //Atributos
     private  String nombre;
     private  String CIF;
-    private  ArrayList<Area> area = new ArrayList<>();
+    private  ArrayList<Area> arrayArea;
 
     //Constructor
     public Hospital(String nom, String cif,ArrayList area){
         this.nombre = nom;
         this.CIF = cif;
-        this.area = area;
+        this.arrayArea = new ArrayList<>();
     }
     //Metodos get y set
 
@@ -33,11 +33,11 @@ public class Hospital {
 
 
     public ArrayList<Area> getArea() {
-        return area;
+        return arrayArea;
     }
 
     public void setArea(ArrayList<Area> area) {
-        this.area = area;
+        this.arrayArea = area;
     }
 }
 

@@ -107,10 +107,14 @@ public class Medico {
     public double proximoAumento(double porcentajeAumento, int aniosRequeridos){
         double resultado = sueldoBruto; /*creo que va ahi sueldo neto*/
         if (aniosAntiguedad >= aniosRequeridos) {
-            double sueldoBrutoAumentado = this.sueldoBruto + (porcentajeAumento*this.sueldoBruto);
+            double sueldoBrutoAumentado = this.sueldoBruto + ((porcentajeAumento/100)*this.sueldoBruto);
             resultado = sueldoBrutoAumentado;
         }
         return resultado;
+    }
+    public double cambiarArea(Area nuevaArea){
+        this.area.cambiarArea(nuevaArea);
+        this.area;
     }
 
 }
