@@ -53,4 +53,13 @@ public class Area {
     public void incrementarNumMedicos() {
         this.numMedicos++;
     }
+    public void decrementarNumMedicos() {
+        if(numMedicos<0) {
+            this.numMedicos--;
+        }
+    }
+    public void cambiarArea(Area nuevaArea) {
+        this.decrementarNumMedicos();
+        nuevaArea.incrementarNumMedicos();
+    }
 }
