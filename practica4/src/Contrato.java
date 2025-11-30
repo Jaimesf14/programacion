@@ -1,18 +1,18 @@
 public class Contrato {
-    private String fechaCreacion;
+    private int fechaCreacion;
     private Medico medico;
     private Hospital hospital;
-    public Contrato(String fechaC, Medico medico, Hospital hosp){
-        this.fechaCreacion = fechaC;
+    public Contrato(int fechaCreacion, Medico medico, Hospital hosp){
+        this.fechaCreacion = fechaCreacion;
         this.medico = medico;
         this.hospital = hosp;
     }
 
-    public String getFechaCreacion() {
+    public int getFechaCreacion() {
         return fechaCreacion;
     }
 
-    public void setFechaCreacion(String fechaCreacion) {
+    public void setFechaCreacion(int fechaCreacion) {
         this.fechaCreacion = fechaCreacion;
     }
 
@@ -31,4 +31,12 @@ public class Contrato {
     public void setHospital(Hospital hospital) {
         this.hospital = hospital;
     }
+
+    public boolean esDeAnio(int anio){
+        if (this.fechaCreacion == anio) {
+            return true;
+        }
+        return false;
+    }
 }
+
