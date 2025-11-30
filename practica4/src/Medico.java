@@ -93,28 +93,38 @@ public class Medico {
     public void setAniosAntiguedad(int aniosAntiguedad) {
         //Creamos lavariable anio, y le selccionamos el año actual.
         int anio = Year.now().getValue();
-        this.aniosAntiguedad = fechaInicio - anio;
+        this.aniosAntiguedad = anio - this.fechaInicio;
     }
 
+    //Calculamos los impuestos anuales
     public double calcularImpuestosAnuales(double tasaImpositiva){
         //Suponemos que el porcentaje de la tasa impositiva es de un 25%
-        return this.sueldoBruto * (25/100);
+        return this.sueldoBruto * (25/100.0);
     }
 
+    //Calculamos si es mayor de edad
     public boolean esMayorDeEdad(int mayoriaEdad){
         return this.edad >= mayoriaEdad;
     }
+
+    //Calculamos el aumento
     public double proximoAumento(double porcentajeAumento, int aniosRequeridos){
-        double resultado = sueldoBruto; /*creo que va ahi sueldo neto*/
+        double resultado = sueldoBruto;
         if (aniosAntiguedad >= aniosRequeridos) {
-            double sueldoBrutoAumentado = this.sueldoBruto + ((porcentajeAumento/100)*this.sueldoBruto);
+            double sueldoBrutoAumentado;
+            sueldoBrutoAumentado = this.sueldoBruto + ((porcentajeAumento/100)*this.sueldoBruto);
             resultado = sueldoBrutoAumentado;
         }
         return resultado;
     }
-    public double cambiarArea(Area nuevaArea){
-        this.area.cambiarArea(nuevaArea);
-        this.area;
-    }
 
+    //gestion de area
+    public void cambiarArea(Area nuevaArea) {
+        this.area.decrementarNumMedicos();
+        this.area = nuevaArea;
+        nuevaArea.incrementarNumMedicos();
+
+    }
 }
+
+
