@@ -1,7 +1,7 @@
 package com.juego.razas;
 
-public abstract class Raza {
-    //se pone que la clase es abstract ya que los atributos no se van a modificar en esta clase, y además, sirve como
+public interface Raza {
+   /* //se pone que la clase es abstract ya que los atributos no se van a modificar en esta clase, y además, sirve como
     //plantilla para las subclases.
     protected String nombre;
     protected int fuerza;
@@ -19,30 +19,13 @@ public abstract class Raza {
         this.destreza = destreza;
         this.vidaBase = vidaBase;
         this.especialidad = especialidad;
-    }
+    }*/
 
-    //Metodos get
-    public String getNombre() {
-        return nombre;
-    }
+    String getNombre();
+    int getFuerza();
+    int getInteligencia();
+    int getDestreza();
+    int getVidaBase();
+    String getEspecialidad();
 
-    public int getFuerza() {
-        return fuerza;
-    }
-
-    public int getInteligencia() {
-        return inteligencia;
-    }
-
-    public int getDestreza() {
-        return destreza;
-    }
-
-    public int getVidaBase() {
-        return vidaBase;
-    }
-
-    public String getEspecialidad() {
-        return especialidad;
-    }
 }
