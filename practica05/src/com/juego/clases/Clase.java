@@ -33,6 +33,7 @@ public interface Clase {
     public int getVidaMax() {
         return vidaMax;
     }*/
+    String getNombre();
     int getBonificacionFuerza();
     int getBonificacionInteligencia();
     int getBonificacionDestreza();
