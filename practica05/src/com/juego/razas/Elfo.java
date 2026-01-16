@@ -4,7 +4,11 @@ public class Elfo implements Raza {
    /* public Elfo(){
         super("Elfo",4,6,7,90,"Agilidad: Ideal para Pícaros, Magos y Bardos.");
     }*/
+    //Constructor vacio
+    public Elfo(){
+    }
 
+    //Metodos interfaz
     @Override
     public String getNombre() {
         return "Elfo";

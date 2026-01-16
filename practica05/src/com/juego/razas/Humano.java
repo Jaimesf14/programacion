@@ -4,7 +4,12 @@ public class Humano implements Raza {
     /*public Humano() {
        super ("Humano",5,5,5,100,"Equilibrado: Versátil para cualquier clase");
    }*/
+    //Constructor vacio
+    public Humano(){
 
+    }
+
+    //Metodos interfaz
     @Override
     public String getNombre() {
         return "Humano";

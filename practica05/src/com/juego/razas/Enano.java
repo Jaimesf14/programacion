@@ -4,6 +4,12 @@ public class Enano implements Raza {
     /*public Enano() {
         super("Enano",7,4,4,110,"Resistencia: Ideal para Guerreros y Paladines.");
 */
+    //Constructor vacio
+    public Enano(){
+
+    }
+
+    //Metodos interfaz
     @Override
     public String getNombre(){
         return "Enano";
