@@ -1,6 +1,10 @@
 package com.juego.razas;
 
+import com.juego.modelo.Personaje;
+
 public interface Raza {
+    void bonificadorRaza(Personaje p);
+}
    /* //se pone que la clase es abstract ya que los atributos no se van a modificar en esta clase, y además, sirve como
     //plantilla para las subclases.
     protected String nombre;
@@ -19,7 +23,7 @@ public interface Raza {
         this.destreza = destreza;
         this.vidaBase = vidaBase;
         this.especialidad = especialidad;
-    }*/
+    }
 
     String getNombre();
     int getFuerza();
@@ -28,4 +32,4 @@ public interface Raza {
     int getVidaBase();
     String getEspecialidad();
 
-}
+}*/
