@@ -3,7 +3,40 @@ package com.juego.razas;
 import com.juego.modelo.Personaje;
 
 public class Humano implements Raza {
-    //atributos
+    //Metodos interfaz
+    @Override
+    public String getNombre() {
+        return "Humano";
+    }
+
+    @Override
+    public int getFuerza() {
+        return 5;
+    }
+
+    @Override
+    public int getInteligencia() {
+        return 5;
+    }
+
+    @Override
+    public int getDestreza() {
+        return 5;
+    }
+
+    @Override
+    public int getVidaBase() {
+        return 100;
+    }
+
+    @Override
+    public String getEspecialidad() {
+        return "Equilibrado: Versátil para cualquier clase";
+    }
+}
+
+/*//atributos
+    private String nombre;
     private int fuerza;
     private int inteligencia;
     private int destreza;
@@ -11,10 +44,10 @@ public class Humano implements Raza {
     private String especialidad;
 
     //constructor
-    public Humano(int fuerza, int inteligencia, int destreza,  int vidaBase,
+    public Humano(String nombre, int fuerza, int inteligencia, int destreza,  int vidaBase,
                   String especialidad){
 
-
+        this.nombre = "Humano";
         this.fuerza = 5;
         this.inteligencia = 5;
         this.destreza = 5;
@@ -74,45 +107,11 @@ public class Humano implements Raza {
         p.setVidaBase(p.getVidaBase() + this.getVidaBase());
         }
     }
-    /*public Humano() {
+    public Humano() {
        super ("Humano",5,5,5,100,"Equilibrado: Versátil para cualquier clase");
    }
     //Constructor vacio
     public Humano(){
 
     }
-
-    //Metodos interfaz
-    @Override
-    public String getNombre() {
-        return "Humano";
-    }
-
-    @Override
-    public int getFuerza() {
-        return 5;
-    }
-
-    @Override
-    public int getInteligencia() {
-        return 5;
-    }
-
-    @Override
-    public int getDestreza() {
-        return 5;
-    }
-
-    @Override
-    public int getVidaBase() {
-        return 100;
-    }
-
-    @Override
-    public String getEspecialidad() {
-        return "Equilibrado: Versátil para cualquier clase";
-    }
-
-
-}
 */

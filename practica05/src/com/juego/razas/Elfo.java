@@ -3,21 +3,50 @@ package com.juego.razas;
 import com.juego.modelo.Personaje;
 
 public class Elfo implements Raza {
-    //atributos
+    //Metodos interfaz
+    @Override
+    public String getNombre() {
+        return "Elfo";
+    }
+
+    @Override
+    public int getFuerza() {
+        return 4;
+    }
+
+    @Override
+    public int getInteligencia() {
+        return 6;
+    }
+
+    @Override
+    public int getDestreza() {
+        return 7;
+    }
+
+    @Override
+    public int getVidaBase() {
+        return 90;
+    }
+
+    @Override
+    public String getEspecialidad() {
+        return "Agilidad: Ideal para Pícaros, Magos y Bardos.";
+    }
+}
+    /*//atributos
+    private String nombre;
     private int fuerza;
     private int inteligencia;
     private int destreza;
     private int vidaBase;
     private String especialidad;
 
-
-
-
     //constructor
-    public Elfo(int fuerza, int inteligencia, int destreza,  int vidaBase,
+    public Elfo(String nombre, int fuerza, int inteligencia, int destreza,  int vidaBase,
                 String especialidad){
 
-
+        this.nombre = "Elfo";
         this.fuerza = 4;
         this.inteligencia = 6;
         this.destreza = 7;
@@ -77,41 +106,11 @@ public class Elfo implements Raza {
         p.setVidaBase(p.getVidaBase() + this.getVidaBase());
         }
     }
-   /* public Elfo(){
+    public Elfo(){
         super("Elfo",4,6,7,90,"Agilidad: Ideal para Pícaros, Magos y Bardos.");
     }
     //Constructor vacio
     public Elfo(){
     }
+*/
 
-    //Metodos interfaz
-    @Override
-    public String getNombre() {
-        return "Elfo";
-    }
-
-    @Override
-    public int getFuerza() {
-        return 4;
-    }
-
-    @Override
-    public int getInteligencia() {
-        return 6;
-    }
-
-    @Override
-    public int getDestreza() {
-        return 7;
-    }
-
-    @Override
-    public int getVidaBase() {
-        return 90;
-    }
-
-    @Override
-    public String getEspecialidad() {
-        return "Agilidad: Ideal para Pícaros, Magos y Bardos.";
-    }
-}*/

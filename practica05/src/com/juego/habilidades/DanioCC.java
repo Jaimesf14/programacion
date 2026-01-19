@@ -14,6 +14,16 @@ public class DanioCC implements Habilidades{
         this.definicion = definicion;
         this.bonificador = bonificador;
     }
+    //get Y set
+
+    public int getBonificador() {
+        return bonificador;
+    }
+
+    public void setBonificador(int bonificador) {
+        this.bonificador = bonificador;
+    }
+
     @Override
     public int usos() {
         return usos;
