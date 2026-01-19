@@ -3,7 +3,39 @@ package com.juego.razas;
 import com.juego.modelo.Personaje;
 
 public class Enano implements Raza {
-    //atributos
+    //Metodos interfaz
+    @Override
+    public String getNombre(){
+        return "Enano";
+    }
+
+    @Override
+    public int getFuerza() {
+        return 7;
+    }
+
+    @Override
+    public int getInteligencia() {
+        return 4;
+    }
+
+    @Override
+    public int getDestreza() {
+        return 4;
+    }
+
+    @Override
+    public int getVidaBase() {
+        return 110;
+    }
+
+    @Override
+    public String getEspecialidad() {
+        return "Resistencia: Ideal para Guerreros y Paladines.";
+    }
+}
+    /*//atributos
+    private String nombre;
     private int fuerza;
     private int inteligencia;
     private int destreza;
@@ -14,10 +46,10 @@ public class Enano implements Raza {
 
 
     //constructor
-    public Enano(int fuerza, int inteligencia, int destreza,  int vidaBase,
+    public Enano(String nombre, int fuerza, int inteligencia, int destreza,  int vidaBase,
                  String especialidad){
 
-
+        this.nombre = "Enano";
         this.fuerza = 7;
         this.inteligencia = 4;
         this.destreza = 4;
@@ -77,43 +109,12 @@ public class Enano implements Raza {
         p.setVidaBase(p.getVidaBase() + this.getVidaBase());
         }
     }
-    /*public Enano() {
+    public Enano() {
         super("Enano",7,4,4,110,"Resistencia: Ideal para Guerreros y Paladines.");
 
     //Constructor vacio
     public Enano(){
 
     }
-
-    //Metodos interfaz
-    @Override
-    public String getNombre(){
-        return "Enano";
-    }
-
-    @Override
-    public int getFuerza() {
-        return 0;
-    }
-
-    @Override
-    public int getInteligencia() {
-        return 0;
-    }
-
-    @Override
-    public int getDestreza() {
-        return 0;
-    }
-
-    @Override
-    public int getVidaBase() {
-        return 0;
-    }
-
-    @Override
-    public String getEspecialidad() {
-        return "Resistencia: Ideal para Guerreros y Paladines.";
-    }
-}
 */
+
