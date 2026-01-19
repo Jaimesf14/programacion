@@ -10,11 +10,9 @@ import java.util.List;
 
 public class Druida implements Clase{
     /*public Druida(){
-        super(2,1,0,100);
-    }*/
-    //Constructor vacio
-
-
+    }
+    public ArrayList
+    public void estadisticas*/
     @Override
     public String getNombre() {
         return "Druida";
@@ -41,10 +39,10 @@ public class Druida implements Clase{
         return 100;
     }
 
-    //Creamos un arrayList donde añadiremos las habilidades de cada clase
-    public List<Habilidades> crearHabilidades(){
+    @Override
+    public ArrayList<Habilidades> getHabilidades(){
         ArrayList<Habilidades> h = new ArrayList<>();
-
+        //Añadimos cada tipo de habilidad al array.
         h.add(new DanioCC("Garra Salvaje","El druida ataca con la ferocidad de una bestia.",15));
         h.add(new CuraCC("Toque Rejuvenecedor","La energía de la naturaleza fluye para sanar al aliado.",25));
         h.add(new DanioDistancia("Espina Perforante","Una espina mágica disparada contra el enemigo.",28));

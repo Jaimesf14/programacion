@@ -44,7 +44,7 @@ public class Sacerdote implements Clase {
     }
 
     //Creamos un arrayList donde añadiremos las habilidades de cada clase
-    public List<Habilidades> crearHabilidades(){
+    public ArrayList<Habilidades> getHabilidades(){
         ArrayList<Habilidades> h = new ArrayList<>();
 
         h.add(new DanioCC("Golpe Consagrado","Un ataque bendecido que canaliza poder sagrado.",14));

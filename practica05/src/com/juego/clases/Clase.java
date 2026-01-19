@@ -1,5 +1,10 @@
 package com.juego.clases;
 
+import com.juego.habilidades.Habilidades;
+
+import java.util.ArrayList;
+import java.util.List;
+
 public interface Clase {
     /*//se pone que la clase es abstract ya que los atributos no se van a modificar en esta clase, y además, sirve como
     //plantilla para las subclases.
@@ -38,5 +43,6 @@ public interface Clase {
     int getBonificacionInteligencia();
     int getBonificacionDestreza();
     int getVidaMax();
+    ArrayList<Habilidades> getHabilidades();
 
 }

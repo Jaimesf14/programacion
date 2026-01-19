@@ -44,7 +44,7 @@ public class Monje implements Clase{
     }
 
     //Creamos un arrayList donde añadiremos las habilidades de cada clase
-    public List<Habilidades> crearHabilidades(){
+    public ArrayList<Habilidades> getHabilidades(){
         ArrayList<Habilidades> h = new ArrayList<>();
 
         h.add(new DanioCC("Puño del Dragón","Un golpe veloz cargado de energía interna.",17));

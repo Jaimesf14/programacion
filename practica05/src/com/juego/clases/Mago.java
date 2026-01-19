@@ -39,7 +39,7 @@ public class Mago implements Clase{
     }
 
     //Creamos un arrayList donde añadiremos las habilidades de cada clase
-    public List<Habilidades> crearHabilidades(){
+    public ArrayList<Habilidades> getHabilidades(){
         ArrayList<Habilidades> h = new ArrayList<>();
 
         h.add(new DanioCC("Descarga Arcana","Una explosión mágica liberada a corta distancia.",15));
