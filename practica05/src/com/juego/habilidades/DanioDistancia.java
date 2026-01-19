@@ -1,5 +1,7 @@
 package com.juego.habilidades;
 
+import com.juego.modelo.Personaje;
+
 public class DanioDistancia implements Habilidades{
     private int usos = 1;
     private int usosRestantes;
@@ -36,6 +38,7 @@ public class DanioDistancia implements Habilidades{
         return bonificador;
     }
 }
+
 //Metodods Get y Set
 
     /*public String getNombre() {
