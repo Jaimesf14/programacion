@@ -1,29 +1,57 @@
 package com.juego.modelo;
 
+import com.juego.clases.Clase;
+import com.juego.habilidades.CuraCC;
+import com.juego.habilidades.DanioCC;
+import com.juego.habilidades.DanioDistancia;
+import com.juego.habilidades.Habilidades;
+import com.juego.razas.Raza;
+
+import java.util.ArrayList;
+
 public class Personaje {
     //atributos
     private String nombre;
     private int fuerza;
     private int destreza;
     private int inteligencia;
-    private int vidaBase;
-    private String especialidad;
-    private int vidaMax;
+    private int vida;
+
+    ArrayList<Habilidades> habilidades;
+    Raza raza;
+    Clase clase;
+
 
 
     //constructor
-    public Personaje(String nombre, int fuerza, int destreza, int inteligencia, int vidaBase,
-                     String especialidad, int vidaMax){
+    public Personaje(String nombre, Raza raza, Clase clase, ArrayList<Habilidades> habilidades){
         this.nombre = nombre;
-        this.fuerza = fuerza;
-        this.destreza = destreza;
-        this.inteligencia = inteligencia;
-        this.vidaBase = vidaBase;
-        this.especialidad = especialidad;
-        this.vidaMax = vidaMax;
+        this.fuerza = raza.getFuerza() + clase.getBonificacionFuerza(); ;
+        this.destreza = raza.getDestreza() + clase.getBonificacionDestreza();
+        this.inteligencia = raza.getInteligencia() + clase.getBonificacionInteligencia();
+        this.vida = raza.getVidaBase() + clase.getVidaMax();
     }
 
+    public void recibirDanio(DanioCC danioCC, DanioDistancia danioDistancia, Habilidades habilidades){
+        if (habilidades == danioCC || habilidades == danioDistancia){
+            vida -= habilidades.bonificador();
+        }
+    }
 
+    public void recibirCuracion(CuraCC curaCC, Habilidades habilidades){
+        if (habilidades == curaCC){
+            vida += habilidades.bonificador();
+        }
+    }
+    public int getVida(){
+        return vida;
+    }
+    public String mostrarDatos(){
+        return "Nombre: " + nombre + " | Vida: " + vida + " |";
+    }
+}
+
+/*
     //get y set
 
 
@@ -97,7 +125,7 @@ public class Personaje {
     }
 }
 
-    /*//atributo de los personajes
+    //atributo de los personajes
     private String nombre;
     private int fuerza;
     private int inteligencia;
