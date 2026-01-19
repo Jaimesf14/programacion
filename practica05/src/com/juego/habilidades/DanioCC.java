@@ -14,6 +14,26 @@ public class DanioCC implements Habilidades{
         this.definicion = definicion;
         this.bonificador = bonificador;
     }
+    @Override
+    public int usos() {
+        return usos;
+    }
+
+    @Override
+    public String nombre() {
+        return nombre;
+    }
+
+    @Override
+    public String definicion() {
+        return definicion;
+    }
+
+    @Override
+    public int bonificador() {
+        return bonificador;
+    }
+}
     //Metodods Get y Set
 
     /*public String getNombre() {
@@ -51,24 +71,5 @@ public class DanioCC implements Habilidades{
 
     //Metodos interfaz
 
-    @Override
-    public int usos() {
-        return usos;
-    }
 
-    @Override
-    public String nombre() {
-        return nombre;
-    }
-
-    @Override
-    public String definicion() {
-        return definicion;
-    }
-
-    @Override
-    public int bonificador() {
-        return bonificador;
-    }
-}
 

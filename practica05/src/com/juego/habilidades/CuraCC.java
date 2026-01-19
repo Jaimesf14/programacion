@@ -14,7 +14,27 @@ public class CuraCC implements Habilidades{
         this.definicion = definicion;
         this.bonificador = bonificador;
     }
-    //Metodods Get y Set
+    @Override
+    public int usos() {
+        return usos;
+    }
+
+    @Override
+    public String nombre() {
+        return nombre;
+    }
+
+    @Override
+    public String definicion() {
+        return definicion;
+    }
+
+    @Override
+    public int bonificador() {
+        return bonificador;
+    }
+}
+//Metodods Get y Set
 
     /*public String getNombre() {
         return nombre;
@@ -51,24 +71,4 @@ public class CuraCC implements Habilidades{
 
     //Metodos interfaz
 
-    @Override
-    public int usos() {
-        return usos;
-    }
-
-    @Override
-    public String nombre() {
-        return nombre;
-    }
-
-    @Override
-    public String definicion() {
-        return definicion;
-    }
-
-    @Override
-    public int bonificador() {
-        return bonificador;
-    }
-}
 

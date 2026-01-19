@@ -14,7 +14,29 @@ public class DanioDistancia implements Habilidades{
         this.definicion = definicion;
         this.bonificador = bonificador;
     }
-    //Metodods Get y Set
+    //Metodos interfaz
+
+    @Override
+    public int usos() {
+        return usos;
+    }
+
+    @Override
+    public String nombre() {
+        return nombre;
+    }
+
+    @Override
+    public String definicion() {
+        return definicion;
+    }
+
+    @Override
+    public int bonificador() {
+        return bonificador;
+    }
+}
+//Metodods Get y Set
 
     /*public String getNombre() {
         return nombre;
@@ -49,25 +71,4 @@ public class DanioDistancia implements Habilidades{
         System.out.println("Daño que provoca: " + bonificador);
     }*/
 
-    //Metodos interfaz
 
-    @Override
-    public int usos() {
-        return usos;
-    }
-
-    @Override
-    public String nombre() {
-        return nombre;
-    }
-
-    @Override
-    public String definicion() {
-        return definicion;
-    }
-
-    @Override
-    public int bonificador() {
-        return bonificador;
-    }
-}
