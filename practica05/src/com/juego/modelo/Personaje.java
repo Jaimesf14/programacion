@@ -16,21 +16,22 @@ public class Personaje {
     private int destreza;
     private int inteligencia;
     private int vida;
-
     ArrayList<Habilidades> habilidades;
     Raza raza;
     Clase clase;
 
-
-
     //constructor
     public Personaje(String nombre, Raza raza, Clase clase, ArrayList<Habilidades> habilidades){
         this.nombre = nombre;
+        this.raza = raza;
+        this.clase = clase;
+        this.habilidades = habilidades;
         this.fuerza = raza.getFuerza() + clase.getBonificacionFuerza(); ;
         this.destreza = raza.getDestreza() + clase.getBonificacionDestreza();
         this.inteligencia = raza.getInteligencia() + clase.getBonificacionInteligencia();
         this.vida = raza.getVidaBase() + clase.getVidaMax();
     }
+
 
     public void recibirDanio(DanioCC danioCC, DanioDistancia danioDistancia, Habilidades habilidades){
         if (habilidades == danioCC || habilidades == danioDistancia){
@@ -43,11 +44,29 @@ public class Personaje {
             vida += habilidades.bonificador();
         }
     }
+
+
+    //Para recorrer la lista de habilidades de cada personaje.
+    public ArrayList<Habilidades> getHabilidades(){
+        return habilidades;
+    }
+
+    //Metodos getter para mostrat informacion
+    public String getNombre() {
+        return nombre;
+    }
+
     public int getVida(){
         return vida;
     }
+
     public String mostrarDatos(){
-        return "Nombre: " + nombre + " | Vida: " + vida + " |";
+        return "Nombre: " + nombre + " | Vida: " + vida + " | Raza: " + raza.getNombre() + " | Clase: " + clase.getNombre();
+    }
+    //metodos set
+
+    public void setVida(int vida) {
+        this.vida = vida;
     }
 }
 
