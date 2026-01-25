@@ -43,9 +43,9 @@ public class Druida implements Clase{
     public ArrayList<Habilidades> getHabilidades(){
         ArrayList<Habilidades> h = new ArrayList<>();
         //Añadimos cada tipo de habilidad al array.
-        h.add(new DanioCC("Garra Salvaje","El druida ataca con la ferocidad de una bestia.",15));
-        h.add(new CuraCC("Toque Rejuvenecedor","La energía de la naturaleza fluye para sanar al aliado.",25));
-        h.add(new DanioDistancia("Espina Perforante","Una espina mágica disparada contra el enemigo.",28));
+        h.add(new DanioCC("Garra Salvaje","El druida ataca con la ferocidad de una bestia.",30,5));
+        h.add(new CuraCC("Toque Rejuvenecedor","La energía de la naturaleza fluye para sanar al aliado.",25,3));
+        h.add(new DanioDistancia("Espina Perforante","Una espina mágica disparada contra el enemigo.",56,1));
         return h;
     }
 }

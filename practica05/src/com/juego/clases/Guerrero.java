@@ -44,9 +44,9 @@ public class Guerrero implements Clase{
     public ArrayList<Habilidades> getHabilidades(){
         ArrayList<Habilidades> h = new ArrayList<>();
 
-        h.add(new DanioCC("Golpe Devastador","El guerrero arroja su arma con precisión para golpear a un enemigo lejano.",18));
-        h.add(new CuraCC("Aliento de Batalla","Un gesto de ánimo en pleno combate que permite a un aliado resistir un poco más.",15));
-        h.add(new DanioDistancia("Lanzamiento de Arma","El guerrero arroja su arma con precisión para golpear a un enemigo lejano.",30));
+        h.add(new DanioCC("Golpe Devastador","El guerrero arroja su arma con precisión para golpear a un enemigo lejano.",36,5));
+        h.add(new CuraCC("Aliento de Batalla","Un gesto de ánimo en pleno combate que permite a un aliado resistir un poco más.",15,3));
+        h.add(new DanioDistancia("Lanzamiento de Arma","El guerrero arroja su arma con precisión para golpear a un enemigo lejano.",60,1));
         return h;
     }
 }
