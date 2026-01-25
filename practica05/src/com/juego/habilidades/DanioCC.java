@@ -8,11 +8,12 @@ public class DanioCC implements Habilidades{
     private int bonificador;
 
     //Constructor
-    public DanioCC(String nombre, String definicion, int bonificador){
+    public DanioCC(String nombre, String definicion, int bonificador, int usos){
 
         this.nombre = nombre;
         this.definicion = definicion;
         this.bonificador = bonificador;
+        this.usos = usos;
     }
     //get Y set
 
@@ -24,9 +25,14 @@ public class DanioCC implements Habilidades{
         this.bonificador = bonificador;
     }
 
+
     @Override
-    public int usos() {
-        return usos;
+    public int getUsos() {
+        return 5;
+    }
+
+    public void setUsos(int usos) {
+        this.usos = usos;
     }
 
     @Override
@@ -42,6 +48,19 @@ public class DanioCC implements Habilidades{
     @Override
     public int bonificador() {
         return bonificador;
+    }
+
+    //El uno significa que es de danio
+    @Override
+    public int getTipo() {
+        return 1;
+    }
+
+    @Override
+    public void restarUsos() {
+        if (this.usos>0){
+            this.usos--;
+        }
     }
 }
     //Metodods Get y Set

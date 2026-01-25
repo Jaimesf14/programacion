@@ -8,15 +8,20 @@ public class CuraCC implements Habilidades{
     private int bonificador;
 
     //Constructor
-    public CuraCC(String nombre, String definicion, int bonificador){
+    public CuraCC(String nombre, String definicion, int bonificador, int usos){
 
         this.nombre = nombre;
         this.definicion = definicion;
         this.bonificador = bonificador;
+        this.usos = usos;
     }
     @Override
-    public int usos() {
+    public int getUsos() {
         return usos;
+    }
+
+    public void setUsos(int usos) {
+        this.usos = usos;
     }
 
     @Override
@@ -32,6 +37,20 @@ public class CuraCC implements Habilidades{
     @Override
     public int bonificador() {
         return bonificador;
+    }
+
+    //El dos significa que es de cura
+    @Override
+    public int getTipo() {
+        return 2;
+    }
+
+    @Override
+    public void restarUsos() {
+        if (this.usos>0){
+            this.usos--;
+        }
+
     }
 }
 //Metodods Get y Set
