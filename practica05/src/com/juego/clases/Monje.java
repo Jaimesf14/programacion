@@ -47,9 +47,9 @@ public class Monje implements Clase{
     public ArrayList<Habilidades> getHabilidades(){
         ArrayList<Habilidades> h = new ArrayList<>();
 
-        h.add(new DanioCC("Puño del Dragón","Un golpe veloz cargado de energía interna.",17));
-        h.add(new CuraCC("Flujo de Chi","El monje transmite su energía vital para restaurar la salud.",20));
-        h.add(new DanioDistancia("Onda de Chi","Una proyección de energía espiritual lanzada desde la distancia.",26));
+        h.add(new DanioCC("Puño del Dragón","Un golpe veloz cargado de energía interna.",34,5));
+        h.add(new CuraCC("Flujo de Chi","El monje transmite su energía vital para restaurar la salud.",40,3));
+        h.add(new DanioDistancia("Onda de Chi","Una proyección de energía espiritual lanzada desde la distancia.",52,1));
         return h;
     }
 }

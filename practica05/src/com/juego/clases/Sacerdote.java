@@ -47,9 +47,9 @@ public class Sacerdote implements Clase {
     public ArrayList<Habilidades> getHabilidades(){
         ArrayList<Habilidades> h = new ArrayList<>();
 
-        h.add(new DanioCC("Golpe Consagrado","Un ataque bendecido que canaliza poder sagrado.",14));
-        h.add(new CuraCC("Sanación Directa","Una oración convertida en energía curativa.",30));
-        h.add(new DanioDistancia("Castigo Divino","Un ataque de luz que juzga al enemigo desde lejos.",30));
+        h.add(new DanioCC("Golpe Consagrado","Un ataque bendecido que canaliza poder sagrado.",29,5));
+        h.add(new CuraCC("Sanación Directa","Una oración convertida en energía curativa.",30,3));
+        h.add(new DanioDistancia("Castigo Divino","Un ataque de luz que juzga al enemigo desde lejos.",61,1));
         return h;
     }
 

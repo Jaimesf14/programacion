@@ -46,9 +46,9 @@ public class Paladin implements Clase{
     public ArrayList<Habilidades> getHabilidades(){
         ArrayList<Habilidades> h = new ArrayList<>();
 
-        h.add(new DanioCC("Espada Sagrada","Un tajo bendecido que combina acero y energía divina.",16));
-        h.add(new CuraCC("Imposición de Manos","El paladín canaliza su fe para sanar heridas con un toque.",25));
-        h.add(new DanioDistancia("Rayo de Fe","Un haz de luz sagrada que castiga a los enemigos a distancia.",28));
+        h.add(new DanioCC("Espada Sagrada","Un tajo bendecido que combina acero y energía divina.",32,5));
+        h.add(new CuraCC("Imposición de Manos","El paladín canaliza su fe para sanar heridas con un toque.",50,3));
+        h.add(new DanioDistancia("Rayo de Fe","Un haz de luz sagrada que castiga a los enemigos a distancia.",56,1));
         return h;
     }
 }

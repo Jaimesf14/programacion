@@ -47,9 +47,9 @@ public class Picaro implements Clase{
     public ArrayList<Habilidades> getHabilidades(){
         ArrayList<Habilidades> h = new ArrayList<>();
 
-        h.add(new DanioCC("Puñalada Traicionera","Un ataque rápido dirigido a puntos vitales.",25));
-        h.add(new CuraCC("Primeros Auxilios","Uso rápido de vendas y técnicas básicas para curar heridas.",15));
-        h.add(new DanioDistancia("Daga Arrojadiza","Una daga lanzada con precisión mortal.",32));
+        h.add(new DanioCC("Puñalada Traicionera","Un ataque rápido dirigido a puntos vitales.",50,5));
+        h.add(new CuraCC("Primeros Auxilios","Uso rápido de vendas y técnicas básicas para curar heridas.",15,3));
+        h.add(new DanioDistancia("Daga Arrojadiza","Una daga lanzada con precisión mortal.",62,1));
         return h;
     }
 

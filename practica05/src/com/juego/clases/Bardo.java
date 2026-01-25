@@ -42,9 +42,9 @@ public class Bardo implements Clase{
     public ArrayList<Habilidades> getHabilidades(){
         ArrayList<Habilidades> h = new ArrayList<>();
 
-        h.add(new DanioCC("Golpe Rítmico","Un ataque marcado por el ritmo de la música.",15));
-        h.add(new CuraCC("Melodía Reconfortante","Una melodía suave que calma y sana heridas.",22));
-        h.add(new DanioDistancia("Nota Discordante","Una onda sonora que daña al enemigo desde lejos.",26));
+        h.add(new DanioCC("Golpe Rítmico","Un ataque marcado por el ritmo de la música.",30,5));
+        h.add(new CuraCC("Melodía Reconfortante","Una melodía suave que calma y sana heridas.",22,3));
+        h.add(new DanioDistancia("Nota Discordante","Una onda sonora que daña al enemigo desde lejos.",52,1));
         return h;
     }
 }

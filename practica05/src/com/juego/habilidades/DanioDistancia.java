@@ -10,18 +10,25 @@ public class DanioDistancia implements Habilidades{
     private int bonificador;
 
     //Constructor
-    public DanioDistancia(String nombre, String definicion, int bonificador){
+    public DanioDistancia(String nombre, String definicion, int bonificador, int usos){
 
         this.nombre = nombre;
         this.definicion = definicion;
         this.bonificador = bonificador;
+        this.usos = usos;
     }
     //Metodos interfaz
 
     @Override
-    public int usos() {
+    public int getUsos() {
         return usos;
     }
+
+    @Override
+    public void setUsos(int usos) {
+        this.usos = usos;
+    }
+
 
     @Override
     public String nombre() {
@@ -36,6 +43,19 @@ public class DanioDistancia implements Habilidades{
     @Override
     public int bonificador() {
         return bonificador;
+    }
+
+    //El uno significa que es de danio
+    @Override
+    public int getTipo() {
+        return 1;
+    }
+
+    @Override
+    public void restarUsos() {
+        if (this.usos>0){
+            this.usos--;
+        }
     }
 }
 

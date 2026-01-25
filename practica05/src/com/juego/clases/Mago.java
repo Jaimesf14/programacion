@@ -42,9 +42,9 @@ public class Mago implements Clase{
     public ArrayList<Habilidades> getHabilidades(){
         ArrayList<Habilidades> h = new ArrayList<>();
 
-        h.add(new DanioCC("Descarga Arcana","Una explosión mágica liberada a corta distancia.",15));
-        h.add(new CuraCC("Transferencia Vital","El mago convierte su energía mágica en curación.",18));
-        h.add(new DanioDistancia("Bola de Fuego","Un proyectil ígneo devastador lanzado a distancia.",35));
+        h.add(new DanioCC("Descarga Arcana","Una explosión mágica liberada a corta distancia.",30,5));
+        h.add(new CuraCC("Transferencia Vital","El mago convierte su energía mágica en curación.",18,3));
+        h.add(new DanioDistancia("Bola de Fuego","Un proyectil ígneo devastador lanzado a distancia.",70,1));
         return h;
     }
 }
