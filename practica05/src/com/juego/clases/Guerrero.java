@@ -9,10 +9,16 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Guerrero implements Clase{
-    /*public Guerrero(){
-        super(3,0,0,120);
-    }*/
-    //Constructor vacio
+    //Creo el array como atributo
+    private ArrayList<Habilidades> h;
+    //Constructor para iniciar habilidades solo una vez
+    public Guerrero(){
+        this.h = new ArrayList<>();
+        h.add(new DanioCC("Golpe Devastador","El guerrero arroja su arma con precisión para golpear a un enemigo lejano.",36,5));
+        h.add(new CuraCC("Aliento de Batalla","Un gesto de ánimo en pleno combate que permite a un aliado resistir un poco más.",15,3));
+        h.add(new DanioDistancia("Lanzamiento de Arma","El guerrero arroja su arma con precisión para golpear a un enemigo lejano.",60,1));
+        h.add(new DanioCC("Furia", "Duplica el daño en las dos siguientes rondas",0,1));
+    }
 
     @Override
     public String getNombre() {
@@ -40,13 +46,8 @@ public class Guerrero implements Clase{
         return 120;
     }
 
-    //Creamos un arrayList donde añadiremos las habilidades de cada clase
+    //devuelve el array creado
     public ArrayList<Habilidades> getHabilidades(){
-        ArrayList<Habilidades> h = new ArrayList<>();
-
-        h.add(new DanioCC("Golpe Devastador","El guerrero arroja su arma con precisión para golpear a un enemigo lejano.",36,5));
-        h.add(new CuraCC("Aliento de Batalla","Un gesto de ánimo en pleno combate que permite a un aliado resistir un poco más.",15,3));
-        h.add(new DanioDistancia("Lanzamiento de Arma","El guerrero arroja su arma con precisión para golpear a un enemigo lejano.",60,1));
-        return h;
+        return this.h;
     }
 }

@@ -119,8 +119,5 @@ public class Presentacion {
         gestorPersonajes.aniadirPresonaje(nuevo);
         System.out.println("| "  + nombre + " ha sido añadido");
     }
-    public static void main(String[] args) {
-        new Presentacion().mostrarMenu();
-    }
 
 }

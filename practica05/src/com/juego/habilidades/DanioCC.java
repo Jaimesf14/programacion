@@ -28,7 +28,7 @@ public class DanioCC implements Habilidades{
 
     @Override
     public int getUsos() {
-        return 5;
+        return usos;
     }
 
     public void setUsos(int usos) {
