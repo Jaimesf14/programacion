@@ -1,9 +1,6 @@
 package com.juego.clases;
 
-import com.juego.habilidades.CuraCC;
-import com.juego.habilidades.DanioCC;
-import com.juego.habilidades.DanioDistancia;
-import com.juego.habilidades.Habilidades;
+import com.juego.habilidades.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -17,7 +14,9 @@ public class Guerrero implements Clase{
         h.add(new DanioCC("Golpe Devastador","El guerrero arroja su arma con precisión para golpear a un enemigo lejano.",36,5));
         h.add(new CuraCC("Aliento de Batalla","Un gesto de ánimo en pleno combate que permite a un aliado resistir un poco más.",15,3));
         h.add(new DanioDistancia("Lanzamiento de Arma","El guerrero arroja su arma con precisión para golpear a un enemigo lejano.",60,1));
+        h.add(new Explosion());
         h.add(new DanioCC("Furia", "Duplica el daño en las dos siguientes rondas",0,1));
+
     }
 
     @Override

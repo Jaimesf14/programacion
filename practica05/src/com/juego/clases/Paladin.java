@@ -1,9 +1,6 @@
 package com.juego.clases;
 
-import com.juego.habilidades.CuraCC;
-import com.juego.habilidades.DanioCC;
-import com.juego.habilidades.DanioDistancia;
-import com.juego.habilidades.Habilidades;
+import com.juego.habilidades.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -49,6 +46,7 @@ public class Paladin implements Clase{
         h.add(new DanioCC("Espada Sagrada","Un tajo bendecido que combina acero y energía divina.",32,5));
         h.add(new CuraCC("Imposición de Manos","El paladín canaliza su fe para sanar heridas con un toque.",50,3));
         h.add(new DanioDistancia("Rayo de Fe","Un haz de luz sagrada que castiga a los enemigos a distancia.",56,1));
+        h.add(new Explosion());
         return h;
     }
 }

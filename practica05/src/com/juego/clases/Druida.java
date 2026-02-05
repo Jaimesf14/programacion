@@ -1,9 +1,6 @@
 package com.juego.clases;
 
-import com.juego.habilidades.CuraCC;
-import com.juego.habilidades.DanioCC;
-import com.juego.habilidades.DanioDistancia;
-import com.juego.habilidades.Habilidades;
+import com.juego.habilidades.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -46,6 +43,7 @@ public class Druida implements Clase{
         h.add(new DanioCC("Garra Salvaje","El druida ataca con la ferocidad de una bestia.",30,5));
         h.add(new CuraCC("Toque Rejuvenecedor","La energía de la naturaleza fluye para sanar al aliado.",25,3));
         h.add(new DanioDistancia("Espina Perforante","Una espina mágica disparada contra el enemigo.",56,1));
+        h.add(new Explosion());
         return h;
     }
 }

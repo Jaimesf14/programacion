@@ -1,9 +1,6 @@
 package com.juego.clases;
 
-import com.juego.habilidades.CuraCC;
-import com.juego.habilidades.DanioCC;
-import com.juego.habilidades.DanioDistancia;
-import com.juego.habilidades.Habilidades;
+import com.juego.habilidades.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -50,6 +47,7 @@ public class Monje implements Clase{
         h.add(new DanioCC("Puño del Dragón","Un golpe veloz cargado de energía interna.",34,5));
         h.add(new CuraCC("Flujo de Chi","El monje transmite su energía vital para restaurar la salud.",40,3));
         h.add(new DanioDistancia("Onda de Chi","Una proyección de energía espiritual lanzada desde la distancia.",52,1));
+        h.add(new Explosion());
         return h;
     }
 }

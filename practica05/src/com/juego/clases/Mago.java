@@ -1,9 +1,6 @@
 package com.juego.clases;
 
-import com.juego.habilidades.CuraCC;
-import com.juego.habilidades.DanioCC;
-import com.juego.habilidades.DanioDistancia;
-import com.juego.habilidades.Habilidades;
+import com.juego.habilidades.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -45,6 +42,7 @@ public class Mago implements Clase{
         h.add(new DanioCC("Descarga Arcana","Una explosión mágica liberada a corta distancia.",30,5));
         h.add(new CuraCC("Transferencia Vital","El mago convierte su energía mágica en curación.",18,3));
         h.add(new DanioDistancia("Bola de Fuego","Un proyectil ígneo devastador lanzado a distancia.",70,1));
+        h.add(new Explosion());
         return h;
     }
 }
