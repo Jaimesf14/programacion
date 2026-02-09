@@ -6,7 +6,6 @@ public class RegistroMuertes {
     public ArrayList<String> registroCombate;
     public RegistroMuertes(){
         registroCombate = new ArrayList<>();
-
         registroCombate.add("Orco derrotado");
         registroCombate.add("Pocion usada");
         registroCombate.add("Druida curado");

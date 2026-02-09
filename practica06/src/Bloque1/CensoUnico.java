@@ -9,6 +9,7 @@ public class CensoUnico {
         nombreVillanos.add("Thanos");
         nombreVillanos.add("Morgoth");
         nombreVillanos.add("Morgoth");
+        nombreVillanos.add("Sauron");
 
         System.out.println("Censo unico: " + nombreVillanos);
     }
