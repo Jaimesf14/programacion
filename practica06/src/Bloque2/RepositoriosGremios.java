@@ -21,7 +21,6 @@ public class RepositoriosGremios {
 
         }
         public void getImprimirGremios(String nombreGremio){
-            System.out.println("-----Ejercicio 7-----");
             if(gremios.containsKey(nombreGremio)){
                 System.out.println("Miembros del gremio " + nombreGremio +":");
                 for (String miembros : gremios.get(nombreGremio)){
