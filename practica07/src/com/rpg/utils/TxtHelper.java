@@ -1,4 +1,4 @@
-package utils;
+package com.rpg.utils;
 
 import com.rpg.model.Ciudad;
 
