@@ -12,7 +12,7 @@ public class Personaje {
         this.nombre = nombre;
         this.raza = raza;
         this.nivel = nivel;
-        this.equipo = equipo;
+        this.equipo= equipo;
     }
 
     //Metodo
