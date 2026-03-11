@@ -6,9 +6,9 @@ public class Personaje {
     String nombre;
     String raza;
     int nivel;
-    List<Item> equipo;
+    List<String> equipo;
 
-    public Personaje(String nombre, String raza, int nivel, List<Item> equipo) {
+    public Personaje(String nombre, String raza, int nivel, List<String> equipo) {
         this.nombre = nombre;
         this.raza = raza;
         this.nivel = nivel;
@@ -41,11 +41,11 @@ public class Personaje {
         this.nivel = nivel;
     }
 
-    public List<Item> getEquipo() {
+    public List<String> getEquipo() {
         return equipo;
     }
 
-    public void setEquipo(List<Item> equipo) {
+    public void setEquipo(List<String> equipo) {
         this.equipo = equipo;
     }
 }
