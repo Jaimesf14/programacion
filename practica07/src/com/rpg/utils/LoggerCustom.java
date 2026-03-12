@@ -5,7 +5,8 @@ import java.io.FileWriter;
 import java.io.IOException;
 
 public class LoggerCustom {
-    
+
+    // Escribe un mensaje en errores.log
     public static  void log(String mensaje){
         String path = "practica07/ficheros/errores.log";
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(path, true))){

@@ -1,10 +1,10 @@
 package com.rpg.model;
 
 public class Ciudad {
-    String Nombre;
-    int poblacion;
-    String clima;
-    int riesgo;
+    private String Nombre;
+    private int poblacion;
+    private String clima;
+    private int riesgo;
 
     public Ciudad(String nombre, int poblacion, String clima, int riesgo){
         this.Nombre = nombre;
@@ -44,5 +44,15 @@ public class Ciudad {
 
     public void setRiesgo(int riesgo) {
         this.riesgo = riesgo;
+    }
+
+    @Override
+    public String toString() {
+        return "Ciudad{" +
+                "nombre='" + Nombre + '\'' +
+                ", poblacion=" + poblacion +
+                ", clima='" + clima + '\'' +
+                ", riesgo=" + riesgo +
+                '}';
     }
 }

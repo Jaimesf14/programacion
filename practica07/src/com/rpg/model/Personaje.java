@@ -3,16 +3,19 @@ package com.rpg.model;
 import java.util.List;
 
 public class Personaje {
-    String nombre;
-    String raza;
-    int nivel;
-    List<String> equipo;
+    private String nombre;
+    private String raza;
+    private int nivel;
+    //ids del Json
+    private List<String> equipoIds;
+    //items cargados en memoria
+    private transient List<Item> equipo;//no modifica personajes.json
 
-    public Personaje(String nombre, String raza, int nivel, List<String> equipo) {
+    public Personaje(String nombre, String raza, int nivel, List<String> equipoIds) {
         this.nombre = nombre;
         this.raza = raza;
         this.nivel = nivel;
-        this.equipo= equipo;
+        this.equipoIds= equipoIds;
     }
 
     //Metodo
@@ -41,11 +44,19 @@ public class Personaje {
         this.nivel = nivel;
     }
 
-    public List<String> getEquipo() {
+    public List<String> getEquipoIds() {
+        return equipoIds;
+    }
+
+    public void setEquipoIds(List<String> equipoIds) {
+        this.equipoIds = equipoIds;
+    }
+
+    public List<Item> getEquipo() {
         return equipo;
     }
 
-    public void setEquipo(List<String> equipo) {
+    public void setEquipo(List<Item> equipo) {
         this.equipo = equipo;
     }
 }

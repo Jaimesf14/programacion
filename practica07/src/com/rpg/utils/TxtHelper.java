@@ -11,20 +11,21 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 public class TxtHelper {
-    public static void leerCiudades() {
+    public static List<Ciudad> leerCiudades() {
+        List<Ciudad> listaCiudades = new ArrayList<>();
         try {
             List<String> lineas = Files.readAllLines(Paths.get("practica07/ficheros/ciudades.txt"));
-            if (lineas.isEmpty()) {
-                System.out.println("El fichero está vacío");
-                throw new FormatoInvalidoException("El fichero ciudades.txt está vacío");
-            }
-            List<Ciudad> listaCiudades = new ArrayList<>();
             for (String linea : lineas) {
+                //Si hay comentarios o lineas en blanco lo ignora
+                if (linea.startsWith("#")|| linea.isBlank()){
+                    continue;
+                }
                 try {
                     String[] s = linea.split(";");
                     if (s.length != 4) {
-                        throw new DatoInvalidoException("El fichero ciudades.txt es inválido");
+                        throw new DatoInvalidoException("Formato incorrecto en línea: " + linea);
                     }
+                    //creamos un objeto ciudad y lo agregamos a la lista
                     Ciudad c = new Ciudad(
                             s[0],
                             Integer.parseInt(s[1]),
@@ -34,15 +35,17 @@ public class TxtHelper {
                     listaCiudades.add(c);
 
                 } catch (DatoInvalidoException e) {
-                    LoggerCustom.log("[" + LocalDateTime.now() + "] ERROR: "
-                            + e.getClass().getSimpleName() + " - " + e.getMessage());
+                    // comprobamos en log sin interrumpir la carga
+                    LoggerCustom.log("[" + LocalDateTime.now() + "] ERROR: " + e.getClass().getSimpleName() + " - " + e.getMessage());
                 }
             }
             System.out.println(listaCiudades);
 
-        } catch (IOException | FormatoInvalidoException e) {
-            LoggerCustom.log("[" + LocalDateTime.now() + "] ERROR: "
-                    + e.getClass().getSimpleName() + " - " + e.getMessage());
+        } catch (IOException e) {
+            LoggerCustom.log("[" + LocalDateTime.now() + "] ERROR: " + e.getClass().getSimpleName() + " - " + e.getMessage());
+
         }
+        return listaCiudades;
     }
+
 }
