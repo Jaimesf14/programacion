@@ -14,3 +14,11 @@
 [2026-03-12T19:08:05.384350800] INFO: Archivo leído -> practica07/ficheros/personajes.json
 [2026-03-12T19:08:05.386351300] INFO: Personaje creado -> Legolas
 [2026-03-12T19:08:05.390352300] INFO: Archivo escrito -> practica07/ficheros/personajes.json
+[2026-03-13T08:47:03.181607200] INFO: Archivo leído -> practica07/ficheros/items.json
+[2026-03-13T08:47:03.258409900] INFO: Archivo leído -> practica07/ficheros/personajes.json
+[2026-03-13T08:47:03.288103200] INFO: Personaje creado -> Legolas
+[2026-03-13T08:47:03.299474] INFO: Archivo escrito -> practica07/ficheros/personajes.json
+[2026-03-13T08:47:43.967117100] INFO: Archivo leído -> practica07/ficheros/items.json
+[2026-03-13T08:47:44.027613100] INFO: Archivo leído -> practica07/ficheros/personajes.json
+[2026-03-13T08:47:44.031773800] INFO: Personaje creado -> Snape
+[2026-03-13T08:47:44.037501900] INFO: Archivo escrito -> practica07/ficheros/personajes.json
