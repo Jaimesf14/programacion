@@ -8,15 +8,19 @@ public class Personaje {
     private int nivel;
     //ids del Json
     private List<String> equipoIds;
+    private int fuerza;
     //items cargados en memoria
     private transient List<Item> equipo;//no modifica personajes.json
 
-    public Personaje(String nombre, String raza, int nivel, List<String> equipoIds) {
+    public Personaje(String nombre, String raza, int nivel, List<String> equipoIds, int fuerza) {
         this.nombre = nombre;
         this.raza = raza;
         this.nivel = nivel;
-        this.equipoIds= equipoIds;
+        this.equipoIds = equipoIds;
+        this.fuerza = fuerza;
+        this.equipo = equipo;
     }
+
 
     //Metodo
 
@@ -58,5 +62,13 @@ public class Personaje {
 
     public void setEquipo(List<Item> equipo) {
         this.equipo = equipo;
+    }
+
+    public int getFuerza() {
+        return fuerza;
+    }
+
+    public void setFuerza(int fuerza) {
+        this.fuerza = fuerza;
     }
 }

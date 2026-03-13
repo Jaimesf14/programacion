@@ -1,1 +1,1 @@
-[{"nombre":"Aragorn","raza":"Humano","nivel":20,"equipoIds":["E01"]},{"nombre":"Snape","raza":"Mago","nivel":1,"equipoIds":["W01","P01"]}]
+[{"nombre":"Aragorn","raza":"Humano","nivel":20,"equipoIds":["E01"],"fuerza":3},{"nombre":"Snape","raza":"Mago","nivel":1,"equipoIds":["W01","P01"],"fuerza":2}]

@@ -22,3 +22,51 @@
 [2026-03-13T08:47:44.027613100] INFO: Archivo leído -> practica07/ficheros/personajes.json
 [2026-03-13T08:47:44.031773800] INFO: Personaje creado -> Snape
 [2026-03-13T08:47:44.037501900] INFO: Archivo escrito -> practica07/ficheros/personajes.json
+[2026-03-13T10:02:23.217307900] INFO: Archivo leído -> practica07/ficheros/items.json
+[2026-03-13T10:02:23.295431400] INFO: Archivo leído -> practica07/ficheros/personajes.json
+[2026-03-13T10:02:23.300134] INFO: Carga del personaje com.rpg.model.Personaje@2be94b0fes valida.
+[2026-03-13T10:02:23.300134] ERROR: El personaje com.rpg.model.Personaje@2be94b0ftiene sobrecarga de equipamiento
+[2026-03-13T10:02:23.301171900] INFO: Personaje creado -> Snape
+[2026-03-13T10:02:23.308948300] INFO: Archivo escrito -> practica07/ficheros/personajes.json
+[2026-03-13T10:03:47.528516200] INFO: Archivo leído -> practica07/ficheros/items.json
+[2026-03-13T10:03:47.590113400] INFO: Archivo leído -> practica07/ficheros/personajes.json
+[2026-03-13T10:03:47.596190100] INFO: Carga del personaje Snapees valida.
+[2026-03-13T10:03:47.596757700] ERROR: El personaje Snapetiene sobrecarga de equipamiento
+[2026-03-13T10:03:47.596757700] INFO: Personaje creado -> Snape
+[2026-03-13T10:03:47.604547900] INFO: Archivo escrito -> practica07/ficheros/personajes.json
+[2026-03-13T10:05:32.513379600] INFO: Archivo leído -> practica07/ficheros/items.json
+[2026-03-13T10:05:32.604138700] INFO: Archivo leído -> practica07/ficheros/personajes.json
+[2026-03-13T10:05:32.611010900] INFO: Carga del personaje Snapees valida.
+[2026-03-13T10:05:32.613125] ERROR: El personaje Snapetiene sobrecarga de equipamiento
+[2026-03-13T10:05:32.613125] INFO: Personaje creado -> Snape
+[2026-03-13T10:05:32.628811] INFO: Archivo escrito -> practica07/ficheros/personajes.json
+[2026-03-13T10:19:11.812732900] INFO: Archivo leído -> practica07/ficheros/items.json
+[2026-03-13T10:19:11.891084300] INFO: Archivo leído -> practica07/ficheros/personajes.json
+[2026-03-13T10:19:11.894749800] INFO: Carga del personaje Snape es valida.
+[2026-03-13T10:19:11.895791100] ERROR: El personaje Snape tiene sobrecarga de equipamiento
+[2026-03-13T10:19:11.895791100] INFO: Personaje creado -> Snape
+[2026-03-13T10:19:11.904604400] INFO: Archivo escrito -> practica07/ficheros/personajes.json
+[2026-03-13T10:19:22.168543] INFO: Archivo leído -> practica07/ficheros/items.json
+[2026-03-13T10:19:22.245744500] INFO: Archivo leído -> practica07/ficheros/personajes.json
+[2026-03-13T10:19:22.251838500] INFO: Carga del personaje Snape es valida.
+[2026-03-13T10:19:22.253444] ERROR: El personaje Snape tiene sobrecarga de equipamiento
+[2026-03-13T10:19:22.255518600] INFO: Personaje creado -> Snape
+[2026-03-13T10:19:22.262315300] INFO: Archivo escrito -> practica07/ficheros/personajes.json
+[2026-03-13T10:51:23.579634700] INFO: Archivo leído -> practica07/ficheros/items.json
+[2026-03-13T10:51:23.682941] INFO: Archivo leído -> practica07/ficheros/personajes.json
+[2026-03-13T10:51:23.693666600] INFO: Personaje creado -> Snape
+[2026-03-13T10:51:23.701775300] INFO: Archivo escrito -> practica07/ficheros/personajes.json
+[2026-03-13T10:51:41.548350900] INFO: Archivo leído -> practica07/ficheros/items.json
+[2026-03-13T10:51:41.618514600] INFO: Archivo leído -> practica07/ficheros/personajes.json
+[2026-03-13T10:51:41.623706500] INFO: Personaje creado -> Snape
+[2026-03-13T10:51:41.633571] INFO: Archivo escrito -> practica07/ficheros/personajes.json
+[2026-03-13T10:57:00.644725100] INFO: Archivo leído -> practica07/ficheros/items.json
+[2026-03-13T10:57:00.710939500] INFO: Archivo leído -> practica07/ficheros/personajes.json
+[2026-03-13T10:57:00.715107] INFO: Personaje creado -> Snape
+[2026-03-13T10:57:00.723480600] INFO: Archivo escrito -> practica07/ficheros/personajes.json
+[2026-03-13T10:57:00.723480600] INFO: Carga del personaje Aragorn es valida.
+[2026-03-13T10:57:00.724521] ERROR: El personaje Aragorn tiene sobrecarga de equipamiento
+[2026-03-13T10:58:03.409727600] INFO: Archivo leído -> practica07/ficheros/items.json
+[2026-03-13T10:58:03.495130500] INFO: Archivo leído -> practica07/ficheros/personajes.json
+[2026-03-13T10:58:03.499379100] INFO: Personaje creado -> Snape
+[2026-03-13T10:58:03.509392400] INFO: Archivo escrito -> practica07/ficheros/personajes.json
