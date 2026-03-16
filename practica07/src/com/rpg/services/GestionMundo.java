@@ -52,6 +52,7 @@ public class GestionMundo {
             // Asignamos los objetos item al personaje
             p.setEquipo(equipoReal);
         }
+
     }
     //crear personajes
     public void crearPersonaje(String nombre, String raza, List<String> idsItems, int fuerza) {
@@ -101,7 +102,10 @@ public class GestionMundo {
             int pesoMax = 0;
             for (String id : p.getEquipoIds()) {
                 for (Item i : items) {
-                    pesoMax += i.getPeso();
+                    if (i.getId().equals(id)){
+                        pesoMax += i.getPeso();
+                        break;
+                    }
                 }
             }
 
