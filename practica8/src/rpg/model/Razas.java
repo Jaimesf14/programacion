@@ -12,4 +12,5 @@ public class Razas {
         this.bonificador_vida = bonificador_vida;
         this.bonificador_fuerza = bonificador_fuerza;
     }
+
 }
