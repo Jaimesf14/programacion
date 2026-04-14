@@ -29,5 +29,6 @@ public class MenuViaje {
         int ciudadeId = s.nextInt();
         personajeDAO.viajar(personajeId, ciudadeId);
         System.out.println("Se ha viajado con exito");
+
     }
 }

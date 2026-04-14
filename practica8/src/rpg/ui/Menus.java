@@ -9,5 +9,6 @@ public class Menus {
     public void cargarMenus() throws NivelInsuficienteException {
         //menuPersonaje.crearPersonaje();
         menuViaje.viajarCiudad();
+
     }
 }

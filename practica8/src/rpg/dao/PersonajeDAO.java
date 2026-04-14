@@ -119,7 +119,6 @@ public class PersonajeDAO {
         } catch (SQLException e) {
             System.out.println("Error al viajar de ciudad");
             e.printStackTrace();
-
         }
     }
 
