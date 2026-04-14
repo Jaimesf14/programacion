@@ -3,6 +3,8 @@ package rpg.dao;
 import rpg.model.Ciudades;
 
 import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
 
 public class CiudadesDAO {
     private Connection connection;
@@ -37,5 +39,21 @@ public class CiudadesDAO {
             e.printStackTrace();
         }
         return ciudad;
+    }
+
+    //LISTA CIUDADES
+    public List<String> listaCiudad(){
+        List<String> ciudades = new ArrayList<>();
+        try{
+            Statement statement = connection.createStatement();
+            ResultSet rs = statement.executeQuery("SELECT id, nombre FROM ciudades");
+            while (rs.next()) {
+                ciudades.add(rs.getInt("id") + " - " + rs.getString("nombre"));
+            }
+        } catch (SQLException e) {
+            System.out.println("Error en la carga de la base de datos de la lista de ciudades");
+            e.printStackTrace();
+        }
+        return ciudades;
     }
 }
