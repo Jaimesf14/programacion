@@ -4,6 +4,8 @@ import rpg.model.Clases_RPG;
 import rpg.model.Razas;
 
 import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
 
 public class ClasesDAO {
     private Connection connection;
@@ -37,6 +39,20 @@ public class ClasesDAO {
             e.printStackTrace();
         }
         return clase;
+    }
+    public List<String> listaClases(){
+        List<String> clases = new ArrayList<>();
+        try{
+            Statement statement = connection.createStatement();
+            ResultSet rs = statement.executeQuery("SELECT id, nombre FROM Clases_rpg");
+            while (rs.next()) {
+                clases.add(rs.getInt("id") + " - " + rs.getString("nombre"));
+            }
+        } catch (SQLException e) {
+            System.out.println("Error en la carga de la base de datos de la lista de clases");
+            e.printStackTrace();
+        }
+        return clases;
     }
 }
 

@@ -58,6 +58,26 @@ public class PersonajeDAO {
         return listaPersonajes;
     }
 
+    //CREAR PERSONAJE
+    public void crearPersonaje(String nombre, int razaId, int claseId){
+        try {
+             PreparedStatement ps = connection.prepareStatement("INSERT INTO personajes (nombre, id_raza, id_clase, nivel, vida_actual, oro) VALUES (?, ?, ?, 1, 100, 100)");
+             ps.setString(1, nombre);
+             ps.setInt(2, razaId);
+            ps.setInt(3, claseId);
+
+            ps.executeUpdate();
+
+            ps.close();
+
+            System.out.println("Personaje creado correctamente");
+
+        } catch (SQLException e) {
+            System.out.println("Error al crear personaje");
+            e.printStackTrace();
+        }
+
+    }
 
 
 }
