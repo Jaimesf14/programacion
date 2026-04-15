@@ -35,7 +35,6 @@ public class RazasDAO {
                 );
 
             }
-            System.out.println("Cargado raza: " + raza.getNombre());
         } catch (SQLException e) {
             System.out.println("Error en la carga de la base de datos de razas");
             e.printStackTrace();

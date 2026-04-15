@@ -33,7 +33,6 @@ public class CiudadesDAO {
                         rs.getInt("nivel_minimo_acceso")
                 );
             }
-            System.out.println("Cargado CIUDADES: " + ciudad.getNombre());
         } catch (SQLException e) {
             System.out.println("Error en la carga de la base de datos de ciudades");
             e.printStackTrace();

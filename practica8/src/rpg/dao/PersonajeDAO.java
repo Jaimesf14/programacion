@@ -49,7 +49,6 @@ public class PersonajeDAO {
                 //CARGA HABILIDADES E INVENTARIO
                 personaje.setHabilidades(habilidadesDAO.obtenerHabilidadesPorPersonaje(id));
                 personaje.setInventario(itemsDAO.obtenerInventarioPorPersonaje(id));
-                System.out.println("Cargado personaje: " + personaje.getNombre());
                 listaPersonajes.add(personaje);
 
             }

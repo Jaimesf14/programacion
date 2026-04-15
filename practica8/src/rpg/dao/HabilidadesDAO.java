@@ -35,7 +35,6 @@ public class HabilidadesDAO {
                 );
                 boolean estaEquipada = rs.getBoolean("equipada_combate");
                 mapaHabilidades.put(habilidad, estaEquipada);
-                System.out.println("Cargado habilidades: " + habilidad.getNombre());
             }
         } catch (SQLException e) {
             System.out.println("Error en la carga de la base de datos de habilidades");

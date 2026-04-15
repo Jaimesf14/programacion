@@ -14,7 +14,7 @@ public class Menus {
 
     public void cargarMenus() {
         int eleccion = 0;
-        while (eleccion != 5){
+        do{
             System.out.println("--- MENU PRINCIPAL ---");
             System.out.println("| 1. Crear personaje");
             System.out.println("| 2. Cambiar de ciudad");
@@ -23,16 +23,14 @@ public class Menus {
             System.out.println("| 5. Salir");
             System.out.println("Elige una opcion: ");
             eleccion = s.nextInt();
-            if (eleccion == 1){
-                menuPersonaje.crearPersonaje();
-            } else if (eleccion == 2) {
-                menuViaje.viajarCiudad();
-            } else if (eleccion == 3) {
-                menuCompraItems.comprarItem();
-            } else if (eleccion == 4) {
-                menuEstadisticas.menuEstadisticas();
+            switch (eleccion) {
+                case 1 -> menuPersonaje.crearPersonaje();
+                case 2 -> menuViaje.viajarCiudad();
+                case 3 -> menuCompraItems.comprarItem();
+                case 4 -> menuEstadisticas.menuEstadisticas();
             }
-        }
+
+        } while (eleccion != 5);
 
 
     }

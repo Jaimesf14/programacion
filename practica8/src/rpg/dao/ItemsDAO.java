@@ -35,7 +35,6 @@ public class ItemsDAO {
                 );
                 int cantidad = rs.getInt("cantidad");
                 mapaInventario.put(item, cantidad);
-                System.out.println("Cargado item: " + item.getNombre());
             }
 
         } catch (SQLException e) {

@@ -1,6 +1,7 @@
 package rpg.logic;
 
 
+import rpg.dao.PersonajeDAO;
 import rpg.model.Personajes;
 
 import java.util.ArrayList;
@@ -8,13 +9,12 @@ import java.util.HashMap;
 import java.util.List;
 
 public class Estadisticas {
-    private List<Personajes> lista;
+    private PersonajeDAO personajeDAO = new PersonajeDAO();
 
-    public Estadisticas() {
-        this.lista = new ArrayList<>();
-    }
 
     public void censoClases(){
+        List<Personajes> lista = personajeDAO.cargarPersonajes();
+
         HashMap<Integer, String> clases = new HashMap<>();
         clases.put(1, "Guerrero");
         clases.put(2, "Mago");
@@ -34,6 +34,5 @@ public class Estadisticas {
             String nombre = clases.get(id);
             System.out.println(nombre + " - " + censo.get(id));
         }
-
     }
 }

@@ -33,7 +33,6 @@ public class ClasesDAO {
                         rs.getString("nombre")
                 );
             }
-            System.out.println("Cargado clases: " + clase.getNombre());
         } catch (SQLException e) {
             System.out.println("Error en la carga de la base de datos de clases");
             e.printStackTrace();
