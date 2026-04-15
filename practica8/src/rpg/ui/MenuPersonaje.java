@@ -37,6 +37,5 @@ public class MenuPersonaje {
 
         System.out.println("Se ha creado el personaje correctamente");
 
-
     }
 }

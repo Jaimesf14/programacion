@@ -12,7 +12,7 @@ public class MenuViaje {
     private PersonajeDAO personajeDAO = new PersonajeDAO();
     private CiudadesDAO ciudadesDAO = new CiudadesDAO();
 
-    public void viajarCiudad() throws NivelInsuficienteException {
+    public void viajarCiudad() {
         System.out.println("--- VIAJAR DE CIUDAD ---");
         List<String> personajes = personajeDAO.listaPersonajes();
         System.out.println("Selecciona la id de un personaje: ");
@@ -27,8 +27,18 @@ public class MenuViaje {
             System.out.println(c);
         }
         int ciudadeId = s.nextInt();
-        personajeDAO.viajar(personajeId, ciudadeId);
-        System.out.println("Se ha viajado con exito");
+
+        try {
+            personajeDAO.viajar(personajeId, ciudadeId);
+            System.out.println("Se ha viajado con exito");
+
+        }catch (NivelInsuficienteException e){
+            System.out.println("NO puedes viajar: " + e.getMessage());
+
+        } catch (Exception e){
+            System.out.println("Error");
+            e.printStackTrace();
+        }
 
     }
 }
