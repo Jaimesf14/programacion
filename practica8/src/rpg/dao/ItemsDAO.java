@@ -49,9 +49,9 @@ public class ItemsDAO {
         List<String> items = new ArrayList<>();
         try{
             Statement statement = connection.createStatement();
-            ResultSet rs = statement.executeQuery("SELECT id, nombre FROM items");
+            ResultSet rs = statement.executeQuery("SELECT * FROM items");
             while (rs.next()) {
-                items.add(rs.getInt("id") + " - " + rs.getString("nombre"));
+                items.add(rs.getInt("id") + " - " + rs.getString("nombre") + " - Tipo: " + rs.getString("tipo") + " - Precio: " + rs.getInt("precio_oro"));
             }
         } catch (SQLException e) {
             System.out.println("Error en la carga de la base de datos de la lista de items");

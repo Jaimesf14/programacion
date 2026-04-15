@@ -67,7 +67,7 @@ public class PersonajeDAO {
             Statement statement = connection.createStatement();
             ResultSet rs = statement.executeQuery("SELECT * FROM personajes");
             while (rs.next()) {
-                personajes.add(rs.getInt("id") + " - " + rs.getString("nombre"));
+                personajes.add(rs.getInt("id") + " - " + rs.getString("nombre") + " - Nivel: " + rs.getInt("nivel") + " - Oro disponible: " + rs.getInt("oro"));
             }
         } catch (SQLException e) {
             System.out.println("Error en la carga de la base de datos de la lista de personajes");
@@ -137,7 +137,7 @@ public class PersonajeDAO {
 
             //precio
             PreparedStatement ps2 = connection.prepareStatement("SELECT precio_oro FROM items WHERE id=? ");
-            ps2.setInt(1, personajeId);
+            ps2.setInt(1, itemID);
             ResultSet rs2 = ps2.executeQuery();
             int precio = 0;
             if (rs2.next()){
@@ -158,7 +158,7 @@ public class PersonajeDAO {
             PreparedStatement ps4 = connection.prepareStatement("INSERT INTO inventarios (id_personaje, id_item) VALUES (?, ?)");
             ps4.setInt(1, personajeId);
             ps4.setInt(2, itemID);
-            ps3.executeUpdate();
+            ps4.executeUpdate();
 
         } catch (SQLException e) {
             System.out.println("Error al comprar el Item");

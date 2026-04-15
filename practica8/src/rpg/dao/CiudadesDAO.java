@@ -46,9 +46,9 @@ public class CiudadesDAO {
         List<String> ciudades = new ArrayList<>();
         try{
             Statement statement = connection.createStatement();
-            ResultSet rs = statement.executeQuery("SELECT id, nombre FROM ciudades");
+            ResultSet rs = statement.executeQuery("SELECT * FROM ciudades");
             while (rs.next()) {
-                ciudades.add(rs.getInt("id") + " - " + rs.getString("nombre"));
+                ciudades.add(rs.getInt("id") + " - " + rs.getString("nombre") + " - Nivel minimo de acceso: " + rs.getInt("nivel_minimo_acceso"));
             }
         } catch (SQLException e) {
             System.out.println("Error en la carga de la base de datos de la lista de ciudades");
