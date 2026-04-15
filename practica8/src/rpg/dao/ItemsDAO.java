@@ -2,7 +2,9 @@ package rpg.dao;
 import rpg.model.Items;
 
 import java.sql.*;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 public class ItemsDAO {
     private Connection connection;
@@ -41,5 +43,20 @@ public class ItemsDAO {
             e.printStackTrace();
         }
         return mapaInventario;
+    }
+    //LISTA ITEMS
+    public List<String> listaItems(){
+        List<String> items = new ArrayList<>();
+        try{
+            Statement statement = connection.createStatement();
+            ResultSet rs = statement.executeQuery("SELECT id, nombre FROM items");
+            while (rs.next()) {
+                items.add(rs.getInt("id") + " - " + rs.getString("nombre"));
+            }
+        } catch (SQLException e) {
+            System.out.println("Error en la carga de la base de datos de la lista de items");
+            e.printStackTrace();
+        }
+        return items;
     }
 }

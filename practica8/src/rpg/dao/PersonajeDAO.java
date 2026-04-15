@@ -1,5 +1,6 @@
 package rpg.dao;
 
+import rpg.exception.FondosInsuficientesException;
 import rpg.exception.NivelInsuficienteException;
 import rpg.model.*;
 
@@ -64,7 +65,7 @@ public class PersonajeDAO {
         List<String> personajes = new ArrayList<>();
         try{
             Statement statement = connection.createStatement();
-            ResultSet rs = statement.executeQuery("SELECT id, nombre FROM personajes");
+            ResultSet rs = statement.executeQuery("SELECT * FROM personajes");
             while (rs.next()) {
                 personajes.add(rs.getInt("id") + " - " + rs.getString("nombre"));
             }
@@ -118,6 +119,49 @@ public class PersonajeDAO {
             }
         } catch (SQLException e) {
             System.out.println("Error al viajar de ciudad");
+            e.printStackTrace();
+        }
+    }
+
+    //COMPRAR ITEMS
+    public void comprarItems(int personajeId, int itemID) throws FondosInsuficientesException {
+        try{
+            //Oro
+            PreparedStatement ps1 = connection.prepareStatement("SELECT oro FROM personajes WHERE id=? ");
+            ps1.setInt(1, personajeId);
+            ResultSet rs1 = ps1.executeQuery();
+            int oro = 0;
+            if (rs1.next()){
+                oro = rs1.getInt("oro");
+            }
+
+            //precio
+            PreparedStatement ps2 = connection.prepareStatement("SELECT precio_oro FROM items WHERE id=? ");
+            ps2.setInt(1, personajeId);
+            ResultSet rs2 = ps2.executeQuery();
+            int precio = 0;
+            if (rs2.next()){
+                precio = rs2.getInt("precio_oro");
+                if (precio>oro){
+                    throw new FondosInsuficientesException("El personaje no dispone de suficiente oro");
+                }
+            }
+
+
+            //restar el oro
+            PreparedStatement ps3 = connection.prepareStatement("UPDATE personajes SET oro = oro - ? WHERE id=?");
+            ps3.setInt(1, precio);
+            ps3.setInt(2, personajeId);
+            ps3.executeUpdate();
+
+            //añadimos al inventario
+            PreparedStatement ps4 = connection.prepareStatement("INSERT INTO inventarios (id_personaje, id_item) VALUES (?, ?)");
+            ps4.setInt(1, personajeId);
+            ps4.setInt(2, itemID);
+            ps3.executeUpdate();
+
+        } catch (SQLException e) {
+            System.out.println("Error al comprar el Item");
             e.printStackTrace();
         }
     }
