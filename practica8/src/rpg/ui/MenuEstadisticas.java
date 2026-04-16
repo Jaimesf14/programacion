@@ -21,9 +21,7 @@ public class MenuEstadisticas {
 
 
             switch (eleccion) {
-                case 1 -> {
-
-                }
+                case 1 -> estadisticas.topRicos();
                 case 2 -> estadisticas.censoClases();
                 case 3 -> {
                     return;

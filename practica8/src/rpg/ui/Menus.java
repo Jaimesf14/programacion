@@ -10,6 +10,7 @@ public class Menus {
     private MenuViaje menuViaje = new MenuViaje();
     private MenuCompraItems menuCompraItems = new MenuCompraItems();
     private MenuEstadisticas menuEstadisticas = new MenuEstadisticas();
+    private MenuEventos menuEventos = new MenuEventos();
 
 
     public void cargarMenus() {
@@ -20,7 +21,8 @@ public class Menus {
             System.out.println("| 2. Cambiar de ciudad");
             System.out.println("| 3. Tienda");
             System.out.println("| 4. Estadisticas");
-            System.out.println("| 5. Salir");
+            System.out.println("| 5. Impuestos");
+            System.out.println("| 6. Salir");
             System.out.println("Elige una opcion: ");
             eleccion = s.nextInt();
             switch (eleccion) {
@@ -28,9 +30,10 @@ public class Menus {
                 case 2 -> menuViaje.viajarCiudad();
                 case 3 -> menuCompraItems.comprarItem();
                 case 4 -> menuEstadisticas.menuEstadisticas();
+                case 5 -> menuEventos.cobroImpuestos();
             }
 
-        } while (eleccion != 5);
+        } while (eleccion != 6);
 
 
     }
