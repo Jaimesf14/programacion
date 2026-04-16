@@ -3,9 +3,11 @@ package rpg.dao;
 import rpg.exception.FondosInsuficientesException;
 import rpg.exception.NivelInsuficienteException;
 import rpg.model.*;
+import rpg.utils.LoggerCustom;
 
 import java.awt.*;
 import java.sql.*;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -89,9 +91,11 @@ public class PersonajeDAO {
             ps.close();
 
             System.out.println("Personaje creado correctamente");
+            LoggerCustom.info("[" + LocalDateTime.now() + "] INFO: Personaje creado -> " + nombre);
 
         } catch (SQLException e) {
-            System.out.println("Error al crear personaje");
+
+            LoggerCustom.info("[" + LocalDateTime.now() + "] Error: No se ha podido crear el personaje -> " + nombre);
             e.printStackTrace();
         }
 
@@ -116,8 +120,11 @@ public class PersonajeDAO {
                 update.setInt(2, personajeId);
                 update.executeUpdate();
             }
+
+            LoggerCustom.info("[" + LocalDateTime.now() + "] INFO: Viaje realizado con exito");
+
         } catch (SQLException e) {
-            System.out.println("Error al viajar de ciudad");
+            LoggerCustom.info("[" + LocalDateTime.now() + "] ERROR: Error al cambiar de ciudad");
             e.printStackTrace();
         }
     }
@@ -143,6 +150,7 @@ public class PersonajeDAO {
                 precio = rs2.getInt("precio_oro");
                 if (precio>oro){
                     throw new FondosInsuficientesException("El personaje no dispone de suficiente oro");
+
                 }
             }
 
@@ -159,8 +167,10 @@ public class PersonajeDAO {
             ps4.setInt(2, itemID);
             ps4.executeUpdate();
 
+            LoggerCustom.info("[" + LocalDateTime.now() + "] INFO: Compra realizada con exito");
+
         } catch (SQLException e) {
-            System.out.println("Error al comprar el Item");
+            LoggerCustom.info("[" + LocalDateTime.now() + "] ERROR: Error al comprar el item");
             e.printStackTrace();
         }
     }
