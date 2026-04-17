@@ -1,5 +1,6 @@
 package rpg.ui;
 
+import rpg.dao.CiudadesDAO;
 import rpg.dao.ClasesDAO;
 import rpg.dao.PersonajeDAO;
 import rpg.dao.RazasDAO;
@@ -13,6 +14,7 @@ public class MenuPersonaje {
     private PersonajeDAO personajeDAO = new PersonajeDAO();
     private ClasesDAO clasesDAO = new ClasesDAO();
     private RazasDAO razasDAO = new RazasDAO();
+    private CiudadesDAO ciudadesDAO = new CiudadesDAO();
 
     public void crearPersonaje(){
         System.out.println("--- CREAR PERSONAJE ---");
@@ -33,7 +35,13 @@ public class MenuPersonaje {
         }
         int claseId = s.nextInt();
 
-        personajeDAO.crearPersonaje(nombre, razaId, claseId);
+        List<String> ciudades = ciudadesDAO.listaCiudad();
+        System.out.println("Selecciona la ID de una ciudad: ");
+        for (String ci : ciudades){
+            System.out.println(ci);
+        }
+        int ciudadId = s.nextInt();
+        personajeDAO.crearPersonaje(nombre, razaId, claseId, ciudadId);
 
         System.out.println("Se ha creado el personaje correctamente");
 

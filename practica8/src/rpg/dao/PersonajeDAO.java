@@ -79,12 +79,24 @@ public class PersonajeDAO {
 
 
     //CREAR PERSONAJE
-    public void crearPersonaje(String nombre, int razaId, int claseId){
+    public void crearPersonaje(String nombre, int razaId, int claseId, int ciudadId ){
+        int cantidadOro = 0;
         try {
-             PreparedStatement ps = connection.prepareStatement("INSERT INTO personajes (nombre, id_raza, id_clase, nivel, vida_actual, oro) VALUES (?, ?, ?, 1, 100, 100)");
+             PreparedStatement ps = connection.prepareStatement("INSERT INTO personajes (nombre, id_raza, id_clase, nivel, vida_actual, id_ciudad_actual, oro) VALUES (?, ?, ?, 1, 100, ?, ?)");
              ps.setString(1, nombre);
              ps.setInt(2, razaId);
-            ps.setInt(3, claseId);
+             ps.setInt(3, claseId);
+             ps.setInt(4, ciudadId);
+             if (ciudadId == 1){
+                 cantidadOro = 100;
+
+             } else if (ciudadId > 1) {
+                 cantidadOro = 500;
+             }
+            ps.setInt(5, cantidadOro);
+
+
+            //al crear personaje si el nivel peligrosidad de ciudad es 1 se crea con 100 monedas y si el nivel es mayor a 1 se crea con 500 monedas
 
             ps.executeUpdate();
 
