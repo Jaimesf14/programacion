@@ -10,11 +10,11 @@ public class Personajes {
     private int vida_actual;
     private int id_raza;
     private int id_clase;
-    private int id_ciudad;
-    private HashMap<Items, Integer> inventario;
-    private HashMap<Habilidades, Boolean> habilidades_equipadas;
+    private int id_ciudad_actual;
+    private HashMap<Habilidades, Boolean> habilidades;
+    private HashMap<Items,Integer> inventario;
 
-    public Personajes(int id, String nombre, int nivel, int oro, int vida_actual, int id_raza, int id_clase, int id_ciudad) {
+    public Personajes(int id, String nombre, int nivel, int oro, int vida_actual, int id_raza, int id_clase, int id_ciudad_actual) {
         this.id = id;
         this.nombre = nombre;
         this.nivel = nivel;
@@ -22,9 +22,10 @@ public class Personajes {
         this.vida_actual = vida_actual;
         this.id_raza = id_raza;
         this.id_clase = id_clase;
-        this.id_ciudad = id_ciudad;
-        this.inventario = new HashMap<>();
-        this.habilidades_equipadas = new HashMap<>();
+        this.id_ciudad_actual = id_ciudad_actual;
+        this.habilidades = new HashMap<>();
+        this.inventario =new HashMap<>();
+
     }
 
     public int getId() {
@@ -83,12 +84,20 @@ public class Personajes {
         this.id_clase = id_clase;
     }
 
-    public int getId_ciudad() {
-        return id_ciudad;
+    public int getId_ciudad_actual() {
+        return id_ciudad_actual;
     }
 
-    public void setId_ciudad(int id_ciudad) {
-        this.id_ciudad = id_ciudad;
+    public void setId_ciudad_actual(int id_ciudad_actual) {
+        this.id_ciudad_actual = id_ciudad_actual;
+    }
+
+    public HashMap<Habilidades, Boolean> getHabilidades() {
+        return habilidades;
+    }
+
+    public void setHabilidades(HashMap<Habilidades, Boolean> habilidades) {
+        this.habilidades = habilidades;
     }
 
     public HashMap<Items, Integer> getInventario() {
@@ -97,14 +106,6 @@ public class Personajes {
 
     public void setInventario(HashMap<Items, Integer> inventario) {
         this.inventario = inventario;
-    }
-
-    public HashMap<Habilidades, Boolean> getHabilidades_equipadas() {
-        return habilidades_equipadas;
-    }
-
-    public void setHabilidades_equipadas(HashMap<Habilidades, Boolean> habilidades_equipadas) {
-        this.habilidades_equipadas = habilidades_equipadas;
     }
 
     @Override
@@ -117,9 +118,9 @@ public class Personajes {
                 ", vida_actual=" + vida_actual +
                 ", id_raza=" + id_raza +
                 ", id_clase=" + id_clase +
-                ", id_ciudad=" + id_ciudad +
+                ", id_ciudad_actual=" + id_ciudad_actual +
+                ", habilidades=" + habilidades +
                 ", inventario=" + inventario +
-                ", habilidades_equipadas=" + habilidades_equipadas +
                 '}';
     }
 }

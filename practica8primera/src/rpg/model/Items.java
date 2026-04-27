@@ -3,8 +3,8 @@ package rpg.model;
 public class Items {
     private int id;
     private String nombre;
-    private String tipo;
-    private  int precio_oro;
+    private String  tipo;
+    private int precio_oro;
     private int bonificador_ataque;
     private int bonificador_defensa;
 

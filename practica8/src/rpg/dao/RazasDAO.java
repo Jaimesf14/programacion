@@ -2,57 +2,54 @@ package rpg.dao;
 
 import rpg.model.Razas;
 
-import java.sql.*;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import static rpg.dao.ConexionDB.getConnection;
+
 public class RazasDAO {
-    private Connection connection;
-    public RazasDAO(){
-        try {
-            connection = DriverManager.getConnection("jdbc:postgresql://localhost:5432/XRPG",
-                    "xrpg_user",
-                    "xrpg_password");
+    private List<Razas>lista_razas;
 
-        } catch (SQLException e){
-            System.out.println("Error en la conexión de la base de datos");
-            e.printStackTrace();
-        }
-
-
+    public RazasDAO() {
+        this.lista_razas = new ArrayList<>();
     }
-    public Razas obtenerRazaPorId(int idRaza){
-        Razas raza = null;
-        try{
-            Statement statement = connection.createStatement();
-            ResultSet rs = statement.executeQuery("SELECT * FROM Razas WHERE id ="+ idRaza);
-            if (rs.next()) {
-                raza = new Razas(
-                        rs.getInt("id"),
-                        rs.getString("nombre"),
-                        rs.getInt("bonificador_vida"),
-                        rs.getInt("bonificador_fuerza")
-                );
 
-            }
-        } catch (SQLException e) {
-            System.out.println("Error en la carga de la base de datos de razas");
-            e.printStackTrace();
-        }
-        return raza;
-    }
-    public List<String> listaRazas(){
-        List<String> razas = new ArrayList<>();
-        try{
-            Statement statement = connection.createStatement();
-            ResultSet rs = statement.executeQuery("SELECT id, nombre FROM Razas");
+    public void ejemploConsulta() {
+        this.lista_razas.clear();
+        String sql = "SELECT * FROM Razas";
+
+        try (Connection conn = getConnection();
+             PreparedStatement pstmt = conn.prepareStatement(sql);
+             ResultSet rs = pstmt.executeQuery()) {
+
             while (rs.next()) {
-                razas.add(rs.getInt("id") + " - " + rs.getString("nombre"));
+                int id = rs.getInt("id");
+                String nombre = rs.getString("nombre");
+                int bonificador_vida = rs.getInt("bonificador_vida");
+                int bonificador_fuerza = rs.getInt("bonificador_fuerza");
+                Razas raza = new Razas(id, nombre, bonificador_vida, bonificador_fuerza);
+                lista_razas.add(raza);
             }
+            for (Razas r : lista_razas){
+                System.out.println(r.getId() + " - " + r.getNombre());
+            }
+
+
         } catch (SQLException e) {
-            System.out.println("Error en la carga de la base de datos de la lista de razas");
+            System.out.println("Error al cargar las razas: " + e.getMessage());
             e.printStackTrace();
         }
-        return razas;
+    }
+
+    public List<Razas> getLista_razas() {
+        return lista_razas;
+    }
+
+    public void setLista_razas(List<Razas> lista_razas) {
+        this.lista_razas = lista_razas;
     }
 }

@@ -48,7 +48,8 @@ public class Razas {
     @Override
     public String toString() {
         return "Razas{" +
-                "nombre='" + nombre + '\'' +
+                "id=" + id +
+                ", nombre='" + nombre + '\'' +
                 ", bonificador_vida=" + bonificador_vida +
                 ", bonificador_fuerza=" + bonificador_fuerza +
                 '}';
