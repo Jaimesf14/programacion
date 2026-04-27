@@ -1,6 +1,6 @@
 package rpg.dao;
 
-import rpg.model.Razas;
+import rpg.model.Ciudades;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -11,17 +11,17 @@ import java.util.List;
 
 import static rpg.dao.ConexionDB.getConnection;
 
-public class RazasDAO {
-    private List<Razas>lista_razas;
+public class CiudadesDAO {
+    private List<Ciudades> lista_ciudades;
 
-    public RazasDAO() {
-        this.lista_razas = new ArrayList<>();
+    public CiudadesDAO() {
+        this.lista_ciudades = new ArrayList<>();
         ejemploConsulta();
     }
 
     public void ejemploConsulta() {
-        this.lista_razas.clear();
-        String sql = "SELECT * FROM Razas";
+        this.lista_ciudades.clear();
+        String sql = "SELECT * FROM Ciudades";
 
         try (Connection conn = getConnection();
              PreparedStatement pstmt = conn.prepareStatement(sql);
@@ -30,13 +30,12 @@ public class RazasDAO {
             while (rs.next()) {
                 int id = rs.getInt("id");
                 String nombre = rs.getString("nombre");
-                int bonificador_vida = rs.getInt("bonificador_vida");
-                int bonificador_fuerza = rs.getInt("bonificador_fuerza");
-                Razas raza = new Razas(id, nombre, bonificador_vida, bonificador_fuerza);
-                lista_razas.add(raza);
+                int nivel_minimo_acceso = rs.getInt("nivel_minimo_acceso");
+                Ciudades ciudades = new Ciudades(id, nombre, nivel_minimo_acceso);
+                lista_ciudades.add(ciudades);
             }
-            for (Razas r : lista_razas){
-                System.out.println(r.getId() + " - " + r.getNombre());
+            for (Ciudades c : lista_ciudades){
+                System.out.println(c.getId() + " - " + c.getNombre());
             }
 
 
@@ -46,11 +45,11 @@ public class RazasDAO {
         }
     }
 
-    public List<Razas> getLista_razas() {
-        return lista_razas;
+    public List<Ciudades> getLista_ciudades() {
+        return lista_ciudades;
     }
 
-    public void setLista_razas(List<Razas> lista_razas) {
-        this.lista_razas = lista_razas;
+    public void setLista_ciudades(List<Ciudades> lista_ciudades) {
+        this.lista_ciudades = lista_ciudades;
     }
 }

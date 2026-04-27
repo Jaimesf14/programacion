@@ -1,5 +1,6 @@
 package rpg.dao;
 
+import rpg.model.ClasesRPG;
 import rpg.model.Razas;
 
 import java.sql.Connection;
@@ -11,17 +12,17 @@ import java.util.List;
 
 import static rpg.dao.ConexionDB.getConnection;
 
-public class RazasDAO {
-    private List<Razas>lista_razas;
+public class ClasesRPGDAO {
+    private List<ClasesRPG> lista_clases;
 
-    public RazasDAO() {
-        this.lista_razas = new ArrayList<>();
+    public ClasesRPGDAO() {
+        this.lista_clases = new ArrayList<>();
         ejemploConsulta();
     }
 
     public void ejemploConsulta() {
-        this.lista_razas.clear();
-        String sql = "SELECT * FROM Razas";
+        this.lista_clases.clear();
+        String sql = "SELECT * FROM Clases_rpg";
 
         try (Connection conn = getConnection();
              PreparedStatement pstmt = conn.prepareStatement(sql);
@@ -30,13 +31,11 @@ public class RazasDAO {
             while (rs.next()) {
                 int id = rs.getInt("id");
                 String nombre = rs.getString("nombre");
-                int bonificador_vida = rs.getInt("bonificador_vida");
-                int bonificador_fuerza = rs.getInt("bonificador_fuerza");
-                Razas raza = new Razas(id, nombre, bonificador_vida, bonificador_fuerza);
-                lista_razas.add(raza);
+                ClasesRPG clasesRPG = new ClasesRPG(id, nombre);
+                lista_clases.add(clasesRPG);
             }
-            for (Razas r : lista_razas){
-                System.out.println(r.getId() + " - " + r.getNombre());
+            for (ClasesRPG c : lista_clases){
+                System.out.println(c.getId() + " - " + c.getNombre());
             }
 
 
@@ -46,11 +45,11 @@ public class RazasDAO {
         }
     }
 
-    public List<Razas> getLista_razas() {
-        return lista_razas;
+    public List<ClasesRPG> getLista_clases() {
+        return lista_clases;
     }
 
-    public void setLista_razas(List<Razas> lista_razas) {
-        this.lista_razas = lista_razas;
+    public void setLista_clases(List<ClasesRPG> lista_clases) {
+        this.lista_clases = lista_clases;
     }
 }
