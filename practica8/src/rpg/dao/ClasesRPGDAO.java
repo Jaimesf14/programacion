@@ -17,10 +17,10 @@ public class ClasesRPGDAO {
 
     public ClasesRPGDAO() {
         this.lista_clases = new ArrayList<>();
-        ejemploConsulta();
+        cargarClases();
     }
 
-    public void ejemploConsulta() {
+    public void cargarClases() {
         this.lista_clases.clear();
         String sql = "SELECT * FROM Clases_rpg";
 
@@ -43,6 +43,15 @@ public class ClasesRPGDAO {
             System.out.println("Error al cargar las razas: " + e.getMessage());
             e.printStackTrace();
         }
+    }
+
+    public ClasesRPG buscarClasePorId(int id){
+        for (ClasesRPG c : lista_clases){
+            if (c.getId() == id){
+                return c;
+            }
+        }
+        return null;
     }
 
     public List<ClasesRPG> getLista_clases() {

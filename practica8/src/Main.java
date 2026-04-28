@@ -1,5 +1,6 @@
 import rpg.dao.CiudadesDAO;
 import rpg.dao.ClasesRPGDAO;
+import rpg.dao.ItemsDAO;
 import rpg.dao.RazasDAO;
 import rpg.model.ClasesRPG;
 
@@ -10,8 +11,10 @@ public static void main(String[] args){
     ClasesRPGDAO clasesRPGDAO = new ClasesRPGDAO();
     System.out.println("CIUDADES");
     CiudadesDAO ciudadesDAO = new CiudadesDAO();
-
+    System.out.println("ITEMS");
+    ItemsDAO itemsDAO = new ItemsDAO();
     razasDAO.getLista_razas();
     clasesRPGDAO.getLista_clases();
     ciudadesDAO.getLista_ciudades();
+    itemsDAO.getLista_items();
 }

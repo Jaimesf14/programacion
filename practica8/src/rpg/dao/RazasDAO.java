@@ -16,10 +16,10 @@ public class RazasDAO {
 
     public RazasDAO() {
         this.lista_razas = new ArrayList<>();
-        ejemploConsulta();
+        cargarRazas();
     }
 
-    public void ejemploConsulta() {
+    public void cargarRazas() {
         this.lista_razas.clear();
         String sql = "SELECT * FROM Razas";
 
@@ -44,6 +44,15 @@ public class RazasDAO {
             System.out.println("Error al cargar las razas: " + e.getMessage());
             e.printStackTrace();
         }
+    }
+
+    public Razas buscarRazaPorId(int id){
+        for (Razas r : lista_razas){
+            if (r.getId() == id){
+                return r;
+            }
+        }
+        return null;
     }
 
     public List<Razas> getLista_razas() {

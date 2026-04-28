@@ -16,10 +16,10 @@ public class CiudadesDAO {
 
     public CiudadesDAO() {
         this.lista_ciudades = new ArrayList<>();
-        ejemploConsulta();
+        cargarCiudades();
     }
 
-    public void ejemploConsulta() {
+    public void cargarCiudades() {
         this.lista_ciudades.clear();
         String sql = "SELECT * FROM Ciudades";
 
@@ -43,6 +43,15 @@ public class CiudadesDAO {
             System.out.println("Error al cargar las razas: " + e.getMessage());
             e.printStackTrace();
         }
+    }
+
+    public Ciudades buscarCiudadesPorId(int id){
+        for (Ciudades c : lista_ciudades){
+            if (c.getId() ==  id){
+                return c;
+            }
+        }
+        return null;
     }
 
     public List<Ciudades> getLista_ciudades() {
