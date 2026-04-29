@@ -8,21 +8,21 @@ public class Personajes {
     private int nivel;
     private int oro;
     private int vida_actual;
-    private int id_raza;
-    private int id_clase;
-    private int id_ciudad;
+    private Razas razas;
+    private ClasesRPG clasesRPG;
+    private Ciudades ciudades;
     private HashMap<Items, Integer> inventario;
     private HashMap<Habilidades, Boolean> habilidades_equipadas;
 
-    public Personajes(int id, String nombre, int nivel, int oro, int vida_actual, int id_raza, int id_clase, int id_ciudad) {
+    public Personajes(int id, String nombre, int nivel, int oro, int vida_actual, Razas razas, ClasesRPG clasesRPG, Ciudades ciudades) {
         this.id = id;
         this.nombre = nombre;
         this.nivel = nivel;
         this.oro = oro;
         this.vida_actual = vida_actual;
-        this.id_raza = id_raza;
-        this.id_clase = id_clase;
-        this.id_ciudad = id_ciudad;
+        this.razas = razas;
+        this.clasesRPG = clasesRPG;
+        this.ciudades = ciudades;
         this.inventario = new HashMap<>();
         this.habilidades_equipadas = new HashMap<>();
     }
@@ -67,28 +67,28 @@ public class Personajes {
         this.vida_actual = vida_actual;
     }
 
-    public int getId_raza() {
-        return id_raza;
+    public Razas getRazas() {
+        return razas;
     }
 
-    public void setId_raza(int id_raza) {
-        this.id_raza = id_raza;
+    public void setRazas(Razas razas) {
+        this.razas = razas;
     }
 
-    public int getId_clase() {
-        return id_clase;
+    public ClasesRPG getClasesRPG() {
+        return clasesRPG;
     }
 
-    public void setId_clase(int id_clase) {
-        this.id_clase = id_clase;
+    public void setClasesRPG(ClasesRPG clasesRPG) {
+        this.clasesRPG = clasesRPG;
     }
 
-    public int getId_ciudad() {
-        return id_ciudad;
+    public Ciudades getCiudades() {
+        return ciudades;
     }
 
-    public void setId_ciudad(int id_ciudad) {
-        this.id_ciudad = id_ciudad;
+    public void setCiudades(Ciudades ciudades) {
+        this.ciudades = ciudades;
     }
 
     public HashMap<Items, Integer> getInventario() {
@@ -115,9 +115,9 @@ public class Personajes {
                 ", nivel=" + nivel +
                 ", oro=" + oro +
                 ", vida_actual=" + vida_actual +
-                ", id_raza=" + id_raza +
-                ", id_clase=" + id_clase +
-                ", id_ciudad=" + id_ciudad +
+                ", razas=" + razas +
+                ", clasesRPG=" + clasesRPG +
+                ", ciudades=" + ciudades +
                 ", inventario=" + inventario +
                 ", habilidades_equipadas=" + habilidades_equipadas +
                 '}';

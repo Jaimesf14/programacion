@@ -37,9 +37,7 @@ public class ItemsDAO {
                 Items items = new Items(id, nombre, tipo, precio_oro, bonificador_ataque, bonificador_defensa);
                 lista_items.add(items);
             }
-            for (Items i : lista_items){
-                System.out.println(i.getId() + " - " + i.getNombre());
-            }
+
         } catch (SQLException e) {
             System.out.println("Error al cargar los items: " +e.getMessage());
             e.printStackTrace();

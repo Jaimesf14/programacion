@@ -12,10 +12,15 @@ public static void main(String[] args){
     ItemsDAO itemsDAO = new ItemsDAO();
     System.out.println("HABILIDADES");
     HabilidadesDAO habilidadesDAO = new HabilidadesDAO();
+    System.out.println("PERSONAJES");
+    itemsDAO.cargarItems();
+    PersonajesDAO personajesDAO = new PersonajesDAO(itemsDAO, habilidadesDAO, razasDAO, clasesRPGDAO, ciudadesDAO);
+
+    personajesDAO.cargarPersonajes();
     razasDAO.getLista_razas();
     clasesRPGDAO.getLista_clases();
     ciudadesDAO.getLista_ciudades();
     itemsDAO.getLista_items();
     habilidadesDAO.getLista_habilidades();
-
+    personajesDAO.getLista_personajes();
 }
