@@ -7,6 +7,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 import static rpg.dao.ConexionDB.getConnection;
@@ -43,6 +44,27 @@ public class ItemsDAO {
             System.out.println("Error al cargar los items: " +e.getMessage());
             e.printStackTrace();
         }
+    }
+
+    public HashMap<Items, Integer> getInventario(int idPersonaje){
+        HashMap<Items, Integer> inventario = new HashMap<>();
+        String sql = "SELECT i.id, inv.cantidad FROM Items i JOIN Inventarios inv ON i.id = inv.id_item WHERE inv.id_personaje = ?";
+
+        try(Connection conn = getConnection();
+            PreparedStatement pstmt = conn.prepareStatement(sql)){
+            pstmt.setInt(1, idPersonaje);
+            ResultSet rs = pstmt.executeQuery();
+            while (rs.next()){
+                int id = rs.getInt("id");
+                Items items = buscarItemsPorId(id);
+                int cantidad = rs.getInt("cantidad");
+                inventario.put(items, cantidad);
+            }
+        } catch (SQLException e){
+            System.out.println("Error al cargar el inventario: " + e.getMessage());
+            e.printStackTrace();
+        }
+        return inventario;
     }
 
     public Items buscarItemsPorId(int id){
