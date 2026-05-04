@@ -34,9 +34,7 @@ public class ClasesRPGDAO {
                 ClasesRPG clasesRPG = new ClasesRPG(id, nombre);
                 lista_clases.add(clasesRPG);
             }
-            for (ClasesRPG c : lista_clases){
-                System.out.println(c.getId() + " - " + c.getNombre());
-            }
+
 
 
         } catch (SQLException e) {

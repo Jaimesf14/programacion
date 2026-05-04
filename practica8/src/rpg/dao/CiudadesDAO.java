@@ -34,9 +34,7 @@ public class CiudadesDAO {
                 Ciudades ciudades = new Ciudades(id, nombre, nivel_minimo_acceso);
                 lista_ciudades.add(ciudades);
             }
-            for (Ciudades c : lista_ciudades){
-                System.out.println(c.getId() + " - " + c.getNombre());
-            }
+
 
 
         } catch (SQLException e) {

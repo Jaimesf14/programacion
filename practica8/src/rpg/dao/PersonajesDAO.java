@@ -66,6 +66,38 @@ public class PersonajesDAO {
         }
     }
 
+    public void crearPersonajes(Personajes p){
+        String sql = "INSERT INTO personajes (nombre, id_raza, id_clase, nivel, vida_actual, id_ciudad_actual, oro) VALUES (?, ?, ?, ?, ?, ?, ?)";
+        try(Connection conn = getConnection();
+        PreparedStatement ps = conn.prepareStatement(sql)){
+        ps.setString(1, p.getNombre());
+        ps.setInt(2, p.getRazas().getId());
+        ps.setInt(3, p.getClasesRPG().getId());
+        ps.setInt(4, p.getNivel());
+        ps.setInt(5, p.getVida_actual());
+        ps.setInt(6, p.getCiudades().getId());
+        ps.setInt(7, p.getOro());
+        ps.executeUpdate();
+
+        } catch (SQLException e){
+            System.out.println("Error al crear el personaje: " + e.getMessage());
+            e.printStackTrace();
+        }
+    }
+
+    public void actualizarCiudades(int personajeId, int ciudadId) {
+        String sql = "UPDATE personajes SET id_ciudad_actual=? WHERE id=?";
+        try (Connection conn = getConnection();
+             PreparedStatement ps = conn.prepareStatement(sql)) {
+            ps.setInt(1, ciudadId);
+            ps.setInt(2, personajeId);
+            ps.executeUpdate();
+        } catch (SQLException e){
+            System.out.println("Error al actualizar las ciudades: " + e.getMessage());
+            e.printStackTrace();
+        }
+    }
+
     public Personajes buscarPersonajesPorId(int id){
         for (Personajes p : lista_personajes){
             if (p.getId() == id){

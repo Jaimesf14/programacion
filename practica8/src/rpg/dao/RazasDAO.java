@@ -35,9 +35,7 @@ public class RazasDAO {
                 Razas raza = new Razas(id, nombre, bonificador_vida, bonificador_fuerza);
                 lista_razas.add(raza);
             }
-            for (Razas r : lista_razas){
-                System.out.println(r.getId() + " - " + r.getNombre());
-            }
+
 
 
         } catch (SQLException e) {

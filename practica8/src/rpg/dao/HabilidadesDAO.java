@@ -36,9 +36,7 @@ public class HabilidadesDAO {
                 lista_habilidades.add(habilidades);
 
             }
-            for (Habilidades h : lista_habilidades){
-                System.out.println(h.getId() + " - " + h.getNombre());
-            }
+
         } catch (SQLException e) {
             System.out.println("Error al cargar las habilidades: "  + e.getMessage());
             e.printStackTrace();
