@@ -57,9 +57,6 @@ public class PersonajesDAO {
                 personajes.setHabilidades_equipadas(habilidadesDAO.getHabilidadeEquipadas(id));
                 lista_personajes.add(personajes);
             }
-            for (Personajes p: lista_personajes){
-                System.out.println(p.getId() + " - " + p.getNombre());
-            }
         } catch (SQLException e){
             System.out.println("Error al cargar los personajes: " + e.getMessage());
             e.printStackTrace();

@@ -1,0 +1,17 @@
+package rpg.utils;
+
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+import java.io.IOException;
+
+public class LoggerCustom {
+    public static  void info(String mensaje){
+        String path = "practica8/ficheros/info.log";
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter(path, true))){
+            writer.write(mensaje);
+            writer.newLine();
+        }catch (IOException e){
+            System.out.println("Error " + e.getMessage());
+        }
+    }
+}
