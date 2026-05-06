@@ -38,6 +38,7 @@ public class Menus {
                         System.out.println("Prueba con otro personaje de mas nivel o con otra ciudad de menos nivel");
                     }
                 }
+                case 3 -> gestionMundo.tienda();
 
             }
         } while (eleccion != 6);

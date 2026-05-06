@@ -160,4 +160,16 @@ public class GestionMundo {
 
     }
 
+    public void tienda(){
+        System.out.println("===TIENDA===");
+        int eleccion =  0;
+        itemsDAO.cargarItems();
+        List<Items> items = itemsDAO.getLista_items();
+        for (Items i : items){
+            System.out.println("- ID: " + i.getId() + " - Nombre: " + i.getNombre() + " - Tipo: " + i.getTipo() + " - Precio: " + i.getPrecio_oro() + " - Bonificador ataque: " +  i.getBonificador_ataque() + " - Bonificador defensa: " + i.getBonificador_defensa());
+        }
+        eleccion  = s.nextInt();
+        s.nextLine();
+    }
+
 }
