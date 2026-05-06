@@ -1,6 +1,7 @@
 package rpg.logic;
 
 import rpg.dao.*;
+import rpg.exception.FondosInsuficientesException;
 import rpg.exception.NivelInsuficienteException;
 import rpg.model.*;
 import rpg.utils.LoggerCustom;
@@ -92,7 +93,7 @@ public class GestionMundo {
                 System.out.println("Id de la ciudad no valido");
                 return;
             }
-            s.nextLine();
+
             Personajes personaje = new Personajes(0,nombre,1,100,100,razaSeleccionada,claseSeleccionada,ciudadSeleccionada);
             personajesDAO.crearPersonajes(personaje);
             System.out.println("Personaje creado correctamente");
@@ -142,6 +143,7 @@ public class GestionMundo {
         String sql = "UPDATE personajes SET id_ciudad_actual = ? WHERE id = ? ";
 
         if (personajeSeleccionado.getNivel() < ciudadSeleccionado.getNivel_minimo_acceso()){
+            LoggerCustom.info("[" + LocalDateTime.now() + "] ERROR: Nivel insuficiente del personaje " + personajeSeleccionado.getNombre() + " para cambiar a la ciudad " + ciudadSeleccionado.getNombre());
             throw new NivelInsuficienteException("Nivel de personaje insuficiente");
 
         }
@@ -160,16 +162,74 @@ public class GestionMundo {
 
     }
 
-    public void tienda(){
+    public void tienda() throws FondosInsuficientesException {
         System.out.println("===TIENDA===");
-        int eleccion =  0;
+
+        //Mostrar personajes
+        personajesDAO.cargarPersonajes();
+        List<Personajes> personajes = personajesDAO.getLista_personajes();
+
+        System.out.println("Selecciona la id del personaje que quieres que cambie de ciudad: ");
+        for (Personajes p : personajes){
+            System.out.println("- ID: " + p.getId() + " - Nombre: " + p.getNombre() + " - Nivel: " + p.getNivel() +  " - Oro: " + p.getOro());
+        }
+        int idPersonaje = s.nextInt();
+        s.nextLine();
+
+        Personajes personajeSeleccionado = personajesDAO.buscarPersonajesPorId(idPersonaje);
+        if (personajeSeleccionado == null){
+            System.out.println("Id del personaje no valido");
+            return;
+        }
+
+        //Mostrar todos los items
         itemsDAO.cargarItems();
         List<Items> items = itemsDAO.getLista_items();
         for (Items i : items){
             System.out.println("- ID: " + i.getId() + " - Nombre: " + i.getNombre() + " - Tipo: " + i.getTipo() + " - Precio: " + i.getPrecio_oro() + " - Bonificador ataque: " +  i.getBonificador_ataque() + " - Bonificador defensa: " + i.getBonificador_defensa());
         }
-        eleccion  = s.nextInt();
+        int idItem  = s.nextInt();
         s.nextLine();
+
+        Items itemSeleccionado = itemsDAO.buscarItemsPorId(idItem);
+        if (itemSeleccionado == null){
+            System.out.println("Id del item no valido");
+            return;
+        }
+
+        if (itemSeleccionado.getPrecio_oro() > personajeSeleccionado.getOro()){
+            LoggerCustom.info("[" + LocalDateTime.now() + "] ERROR: El personaje " + personajeSeleccionado.getNombre() + " no dispone de oro suficiente para compra el item " +itemSeleccionado.getNombre());
+            throw new FondosInsuficientesException("Cantidad de oro insuficiente para comprar el item");
+        }
+        String sqlUpdate = "UPDATE personajes SET oro = oro - ? WHERE id=?";
+        String sqlInsert = "INSERT INTO inventarios (id_personaje, id_item) VALUES (?, ?)";
+        String sqlUpdateCant = "UPDATE inventarios SET cantidad = cantidad + 1 WHERE id_personaje = ? AND id_item = ?";
+        try(Connection conn = getConnection();
+            PreparedStatement pstmt = conn.prepareStatement(sqlUpdate)){
+            pstmt.setInt(1, itemSeleccionado.getPrecio_oro());
+            pstmt.setInt(2, personajeSeleccionado.getId());
+            pstmt.executeUpdate();
+
+            if (personajeSeleccionado.getInventario().containsKey(itemSeleccionado)){
+                PreparedStatement update = conn.prepareStatement(sqlUpdateCant);
+                update.setInt(1, personajeSeleccionado.getId());
+                update.setInt(2, itemSeleccionado.getId());
+                update.executeUpdate();
+
+            }else {
+                PreparedStatement insert = conn.prepareStatement(sqlInsert);
+                insert.setInt(1, personajeSeleccionado.getId());
+                insert.setInt(2, itemSeleccionado.getId());
+                insert.executeUpdate();
+            }
+
+            LoggerCustom.info("[" + LocalDateTime.now() + "] INFO: El personaje - " + personajeSeleccionado.getNombre() + " ha comprado el item " + itemSeleccionado.getNombre());
+
+
+        } catch (SQLException e) {
+            LoggerCustom.info("[" + LocalDateTime.now() + "] ERROR: Error al comprar el item - " +e.getMessage());
+            e.printStackTrace();
+        }
     }
 
 }

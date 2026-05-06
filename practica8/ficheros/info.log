@@ -1,2 +1,8 @@
 [2026-05-06T13:12:03.986662494] INFO: El personaje 2 ha cambiado de ciudad
 [2026-05-06T13:12:22.458285016] INFO: El personaje 2 ha cambiado de ciudad
+[2026-05-06T18:04:49.034446426] INFO: Personaje creado correctamente
+[2026-05-06T18:05:11.325965095] INFO: El personaje 3 ha cambiado de ciudad
+[2026-05-06T18:29:04.550042349] ERROR: Nivel insuficiente del personaje Jaime para cambiar a la ciudad Baluarte de Piedra
+[2026-05-06T20:01:17.572617746] INFO: El personaje - Jaime ha comprado el item Espada de Madera
+[2026-05-06T20:15:33.833244726] ERROR: Error al comprar el item - ERROR: duplicate key value violates unique constraint "inventarios_pkey"
+  Detail: Key (id_personaje, id_item)=(1, 5) already exists.

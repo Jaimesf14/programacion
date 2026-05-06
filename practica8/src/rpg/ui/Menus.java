@@ -2,6 +2,7 @@ package rpg.ui;
 
 
 import rpg.dao.*;
+import rpg.exception.FondosInsuficientesException;
 import rpg.exception.NivelInsuficienteException;
 import rpg.logic.GestionMundo;
 
@@ -15,7 +16,7 @@ public class Menus {
 
     }
 
-    public void cargarMenus() throws NivelInsuficienteException {
+    public void cargarMenus() throws NivelInsuficienteException, FondosInsuficientesException {
         int eleccion = 0;
         do{
             System.out.println("======== MENU ========");
