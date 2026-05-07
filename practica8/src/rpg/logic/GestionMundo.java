@@ -37,6 +37,9 @@ public class GestionMundo {
         );
     }
 
+    //------------------------------------------------------------------------------------------------------------------
+
+
     public void crearPersonaje(){
         try{
             System.out.println("===CREAR PERSONAJE===");
@@ -106,6 +109,9 @@ public class GestionMundo {
         }
     }
 
+    //------------------------------------------------------------------------------------------------------------------
+
+
     public void viajarCiudad() throws NivelInsuficienteException {
         System.out.println("===VIAJAR===");
 
@@ -162,6 +168,8 @@ public class GestionMundo {
 
     }
 
+    //------------------------------------------------------------------------------------------------------------------
+
     public void tienda() throws FondosInsuficientesException {
         System.out.println("===TIENDA===");
 
@@ -201,35 +209,33 @@ public class GestionMundo {
             LoggerCustom.info("[" + LocalDateTime.now() + "] ERROR: El personaje " + personajeSeleccionado.getNombre() + " no dispone de oro suficiente para compra el item " +itemSeleccionado.getNombre());
             throw new FondosInsuficientesException("Cantidad de oro insuficiente para comprar el item");
         }
+
         String sqlUpdate = "UPDATE personajes SET oro = oro - ? WHERE id=?";
-        String sqlInsert = "INSERT INTO inventarios (id_personaje, id_item) VALUES (?, ?)";
-        String sqlUpdateCant = "UPDATE inventarios SET cantidad = cantidad + 1 WHERE id_personaje = ? AND id_item = ?";
+        String sqlCant= "INSERT INTO inventarios (id_personaje, id_item, cantidad) VALUES (?, ?, 1) ON CONFLICT (id_personaje, id_item) DO UPDATE SET cantidad = inventarios.cantidad + 1";
+
         try(Connection conn = getConnection();
+            //Para restar el oro
             PreparedStatement pstmt = conn.prepareStatement(sqlUpdate)){
             pstmt.setInt(1, itemSeleccionado.getPrecio_oro());
             pstmt.setInt(2, personajeSeleccionado.getId());
             pstmt.executeUpdate();
 
-            if (personajeSeleccionado.getInventario().containsKey(itemSeleccionado)){
-                PreparedStatement update = conn.prepareStatement(sqlUpdateCant);
-                update.setInt(1, personajeSeleccionado.getId());
-                update.setInt(2, itemSeleccionado.getId());
-                update.executeUpdate();
+            //Para añadir el item
+            PreparedStatement update = conn.prepareStatement(sqlCant);
+            update.setInt(1, personajeSeleccionado.getId());
+            update.setInt(2, itemSeleccionado.getId());
+            update.executeUpdate();
 
-            }else {
-                PreparedStatement insert = conn.prepareStatement(sqlInsert);
-                insert.setInt(1, personajeSeleccionado.getId());
-                insert.setInt(2, itemSeleccionado.getId());
-                insert.executeUpdate();
-            }
-
-            LoggerCustom.info("[" + LocalDateTime.now() + "] INFO: El personaje - " + personajeSeleccionado.getNombre() + " ha comprado el item " + itemSeleccionado.getNombre());
-
+            System.out.println("Compra realizada con exito");
+            LoggerCustom.info("[" + LocalDateTime.now() + "] INFO: El personaje " + personajeSeleccionado.getNombre() + " ha comprado el item " + itemSeleccionado.getNombre());
 
         } catch (SQLException e) {
             LoggerCustom.info("[" + LocalDateTime.now() + "] ERROR: Error al comprar el item - " +e.getMessage());
             e.printStackTrace();
         }
     }
+
+    //------------------------------------------------------------------------------------------------------------------
+
 
 }

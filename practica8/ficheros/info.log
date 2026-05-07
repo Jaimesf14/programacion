@@ -6,3 +6,12 @@
 [2026-05-06T20:01:17.572617746] INFO: El personaje - Jaime ha comprado el item Espada de Madera
 [2026-05-06T20:15:33.833244726] ERROR: Error al comprar el item - ERROR: duplicate key value violates unique constraint "inventarios_pkey"
   Detail: Key (id_personaje, id_item)=(1, 5) already exists.
+[2026-05-07T08:28:39.445957540] INFO: El personaje - J ha comprado el item Espada de Madera
+[2026-05-07T08:29:21.292828227] ERROR: Error al comprar el item - ERROR: duplicate key value violates unique constraint "inventarios_pkey"
+  Detail: Key (id_personaje, id_item)=(3, 1) already exists.
+[2026-05-07T08:31:13.506435419] INFO: El personaje - Jaime ha comprado el item Espada de Madera
+[2026-05-07T08:31:17.645122121] ERROR: Error al comprar el item - ERROR: duplicate key value violates unique constraint "inventarios_pkey"
+  Detail: Key (id_personaje, id_item)=(4, 1) already exists.
+[2026-05-07T08:38:50.876815817] INFO: Personaje creado correctamente
+[2026-05-07T08:38:59.875144164] INFO: El personaje - a ha comprado el item Espada de Madera
+[2026-05-07T08:39:10.048639774] INFO: El personaje - a ha comprado el item Espada de Madera
