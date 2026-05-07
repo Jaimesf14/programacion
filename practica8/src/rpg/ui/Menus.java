@@ -23,8 +23,8 @@ public class Menus {
             System.out.println("| 1. Crear personaje");
             System.out.println("| 2. Cambiar de ciudad");
             System.out.println("| 3. Tienda");
-            System.out.println("| 4. Estadisticas");
-            System.out.println("| 5. Impuestos");
+            System.out.println("| 4. Cobro de impuestos");
+            System.out.println("| 5. Estadisticas");
             System.out.println("| 6. Salir");
             System.out.println("======================");
             System.out.println("Elige una opcion: ");
@@ -40,6 +40,7 @@ public class Menus {
                     }
                 }
                 case 3 -> gestionMundo.tienda();
+                case 4 -> gestionMundo.cobroImpuestos();
 
             }
         } while (eleccion != 6);

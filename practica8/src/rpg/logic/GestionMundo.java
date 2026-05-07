@@ -12,6 +12,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Scanner;
 
@@ -237,5 +238,81 @@ public class GestionMundo {
 
     //------------------------------------------------------------------------------------------------------------------
 
+    public void cobroImpuestos(){
+        ciudadesDAO.cargarCiudades();
+        List<Ciudades> ciudades = ciudadesDAO.getLista_ciudades();
 
+        System.out.println("Selecciona la id de la ciudad donde quieres quese coben los impuestos");
+        for (Ciudades c : ciudades){
+            System.out.println("- ID: " + c.getId() + " - Nombre: " + c.getNombre() + " - Nivel Minimo de Acceso: " +c.getNivel_minimo_acceso());
+        }
+        int idCiudad = s.nextInt();
+        s.nextLine();
+
+        Ciudades ciudadSeleccionado  = ciudadesDAO.buscarCiudadesPorId(idCiudad);
+        if (ciudadSeleccionado == null){
+            System.out.println("Id de la ciudad no valida");
+            return;
+        }
+
+        personajesDAO.cargarPersonajes();
+        List<Personajes> personajes = personajesDAO.getLista_personajes();
+
+        Iterator<Personajes>iterator = personajes.iterator();
+        while (iterator.hasNext()){
+            Personajes p = iterator.next();
+
+            if (p.getCiudades().getId() != idCiudad){
+                continue;
+
+            }
+
+            int oro = p.getOro() -20;
+            p.setOro(oro);
+
+            String sql = "UPDATE Personajes set oro = ? WHERE id = ?";
+
+            try(Connection conn = getConnection();
+                PreparedStatement pstmt  = conn.prepareStatement(sql)){
+                pstmt.setInt(1, oro);
+                pstmt.setInt(2, p.getId());
+                pstmt.executeUpdate();
+
+
+
+
+            } catch (SQLException e) {
+                LoggerCustom.info("[" + LocalDateTime.now() + "] ERROR: Error al cobrar impuestos - " +e.getMessage());
+                e.printStackTrace();
+            }
+
+            if (p.getOro() < 0){
+                LoggerCustom.info("[" + LocalDateTime.now() + "] INFO: El personaje " + p.getNombre() + " ha sido desterrado");
+                System.out.println("El personaje " + p.getNombre() + " ha sido desterrado");
+                iterator.remove();
+
+                String sql2 = "UPDATE Personajes set id_ciudad_actual = NULL WHERE id = ?";
+
+                try(Connection conn = getConnection();
+                    PreparedStatement pstmt  = conn.prepareStatement(sql2)){
+                    pstmt.setInt(1, p.getId());
+                    pstmt.executeUpdate();
+
+                } catch (SQLException e) {
+                    LoggerCustom.info("[" + LocalDateTime.now() + "] ERROR: Error al  desterrar al personaje " + p.getNombre() + " - " +e.getMessage());
+                    e.printStackTrace();
+                }
+            } else {
+                LoggerCustom.info("[" + LocalDateTime.now() + "] INFO: Impuesto cobrado al personaje " + p.getNombre() + " - Oro restante: " + p.getOro());
+                System.out.println("Impuesto cobrado al personaje " + p.getNombre() + " - Oro restante: " + p.getOro());
+            }
+        }
+
+    }
+
+    //------------------------------------------------------------------------------------------------------------------
+
+    public void jugadoresRicos(){
+
+    }
 }
