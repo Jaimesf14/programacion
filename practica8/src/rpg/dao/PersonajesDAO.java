@@ -32,6 +32,8 @@ public class PersonajesDAO {
         this.ciudadesDAO = ciudadesDAO;
     }
 
+    //------------------------------------------------------------------------------------------------------------------
+
     public void cargarPersonajes(){
         this.lista_personajes.clear();
         String sql = "SELECT * FROM Personajes";
@@ -63,6 +65,8 @@ public class PersonajesDAO {
         }
     }
 
+    //------------------------------------------------------------------------------------------------------------------
+
     public void crearPersonajes(Personajes p){
         String sql = "INSERT INTO personajes (nombre, id_raza, id_clase, nivel, vida_actual, id_ciudad_actual, oro) VALUES (?, ?, ?, ?, ?, ?, ?)";
         try(Connection conn = getConnection();
@@ -82,18 +86,7 @@ public class PersonajesDAO {
         }
     }
 
-    public void actualizarCiudades(int personajeId, int ciudadId) {
-        String sql = "UPDATE personajes SET id_ciudad_actual=? WHERE id=?";
-        try (Connection conn = getConnection();
-             PreparedStatement ps = conn.prepareStatement(sql)) {
-            ps.setInt(1, ciudadId);
-            ps.setInt(2, personajeId);
-            ps.executeUpdate();
-        } catch (SQLException e){
-            System.out.println("Error al actualizar las ciudades: " + e.getMessage());
-            e.printStackTrace();
-        }
-    }
+    //------------------------------------------------------------------------------------------------------------------
 
     public Personajes buscarPersonajesPorId(int id){
         for (Personajes p : lista_personajes){
@@ -103,6 +96,8 @@ public class PersonajesDAO {
         }
         return null;
     }
+
+    //------------------------------------------------------------------------------------------------------------------
 
     public List<Personajes> getLista_personajes() {
         return lista_personajes;

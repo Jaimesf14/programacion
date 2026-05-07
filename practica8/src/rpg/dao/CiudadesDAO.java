@@ -19,6 +19,8 @@ public class CiudadesDAO {
         cargarCiudades();
     }
 
+    //------------------------------------------------------------------------------------------------------------------
+
     public void cargarCiudades() {
         this.lista_ciudades.clear();
         String sql = "SELECT * FROM Ciudades";
@@ -43,6 +45,8 @@ public class CiudadesDAO {
         }
     }
 
+    //------------------------------------------------------------------------------------------------------------------
+
     public Ciudades buscarCiudadesPorId(int id){
         for (Ciudades c : lista_ciudades){
             if (c.getId() ==  id){
@@ -51,6 +55,8 @@ public class CiudadesDAO {
         }
         return null;
     }
+
+    //------------------------------------------------------------------------------------------------------------------
 
     public List<Ciudades> getLista_ciudades() {
         return lista_ciudades;

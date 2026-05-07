@@ -19,6 +19,8 @@ public class RazasDAO {
         cargarRazas();
     }
 
+    //------------------------------------------------------------------------------------------------------------------
+
     public void cargarRazas() {
         this.lista_razas.clear();
         String sql = "SELECT * FROM Razas";
@@ -44,6 +46,8 @@ public class RazasDAO {
         }
     }
 
+    //------------------------------------------------------------------------------------------------------------------
+
     public Razas buscarRazaPorId(int id){
         for (Razas r : lista_razas){
             if (r.getId() == id){
@@ -52,6 +56,8 @@ public class RazasDAO {
         }
         return null;
     }
+
+    //------------------------------------------------------------------------------------------------------------------
 
     public List<Razas> getLista_razas() {
         return lista_razas;

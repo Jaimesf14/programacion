@@ -20,6 +20,8 @@ public class ClasesRPGDAO {
         cargarClases();
     }
 
+    //------------------------------------------------------------------------------------------------------------------
+
     public void cargarClases() {
         this.lista_clases.clear();
         String sql = "SELECT * FROM Clases_rpg";
@@ -43,6 +45,8 @@ public class ClasesRPGDAO {
         }
     }
 
+    //------------------------------------------------------------------------------------------------------------------
+
     public ClasesRPG buscarClasePorId(int id){
         for (ClasesRPG c : lista_clases){
             if (c.getId() == id){
@@ -51,6 +55,8 @@ public class ClasesRPGDAO {
         }
         return null;
     }
+
+    //------------------------------------------------------------------------------------------------------------------
 
     public List<ClasesRPG> getLista_clases() {
         return lista_clases;

@@ -20,6 +20,8 @@ public class ItemsDAO {
         cargarItems();
     }
 
+    //------------------------------------------------------------------------------------------------------------------
+
     public void cargarItems(){
         this.lista_items.clear();
         String sql = "SELECT * FROM Items";
@@ -44,6 +46,8 @@ public class ItemsDAO {
         }
     }
 
+    //------------------------------------------------------------------------------------------------------------------
+
     public HashMap<Items, Integer> getInventario(int idPersonaje){
         HashMap<Items, Integer> inventario = new HashMap<>();
         String sql = "SELECT i.id, inv.cantidad FROM Items i JOIN Inventarios inv ON i.id = inv.id_item WHERE inv.id_personaje = ?";
@@ -65,6 +69,8 @@ public class ItemsDAO {
         return inventario;
     }
 
+    //------------------------------------------------------------------------------------------------------------------
+
     public Items buscarItemsPorId(int id){
         for (Items i : lista_items){
             if (i.getId() == id){
@@ -73,6 +79,8 @@ public class ItemsDAO {
         }
         return null;
     }
+
+    //------------------------------------------------------------------------------------------------------------------
 
     public List<Items> getLista_items() {
         return lista_items;

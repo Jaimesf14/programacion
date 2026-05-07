@@ -20,6 +20,8 @@ public class HabilidadesDAO {
         cargarHabilidades();
     }
 
+    //------------------------------------------------------------------------------------------------------------------
+
     public void cargarHabilidades(){
         this.lista_habilidades.clear();
         String sql = "SELECT * FROM Habilidades";
@@ -43,6 +45,8 @@ public class HabilidadesDAO {
         }
     }
 
+    //------------------------------------------------------------------------------------------------------------------
+
     public HashMap<Habilidades, Boolean> getHabilidadeEquipadas(int idPersonaje){
         HashMap<Habilidades, Boolean> habilidadesEquipadas = new HashMap<>();
         String sql = "SELECT h.id, ph.equipada_combate FROM Habilidades h JOIN Personajes_Habilidades ph ON  h.id = ph.id_habilidad WHERE ph.id_personaje  = ?";
@@ -64,6 +68,8 @@ public class HabilidadesDAO {
         return habilidadesEquipadas;
     }
 
+    //------------------------------------------------------------------------------------------------------------------
+
     public Habilidades buscarHabilidadesPorId(int  id){
         for (Habilidades h : lista_habilidades){
             if (h.getId() == id){
@@ -72,6 +78,8 @@ public class HabilidadesDAO {
         }
         return null;
     }
+
+    //------------------------------------------------------------------------------------------------------------------
 
     public List<Habilidades> getLista_habilidades() {
         return lista_habilidades;
