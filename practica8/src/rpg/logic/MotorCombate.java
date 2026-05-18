@@ -3,10 +3,17 @@ package rpg.logic;
 import rpg.dao.*;
 import rpg.model.Habilidades;
 import rpg.model.Personajes;
+import rpg.utils.LoggerCustom;
 
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Map;
 import java.util.Scanner;
+
+import static rpg.dao.ConexionDB.getConnection;
 
 public class MotorCombate {
     private Scanner s = new Scanner(System.in);
@@ -62,7 +69,24 @@ public class MotorCombate {
             return;
         }
 
-        if ()
+        if (personajeSeleccionado.getHabilidades_equipadas().get(habilidadSeleccionada)) {
+            System.out.println("Esta habilidad ya esta seleccionada.");
+        } else {
+            String sql = "UPDATE personajes_habilidades SET equipada_combate = ? WHERE id_personaje = ? AND id_habilidad = ?";
+            try(Connection conn = getConnection();
+                PreparedStatement pstmt = conn.prepareStatement(sql)){
+                pstmt.setBoolean(1, true);
+                pstmt.setInt(2, personajeSeleccionado.getId());
+                pstmt.setInt(3, habilidadSeleccionada.getId());
+                personajeSeleccionado.getHabilidades_equipadas().put(habilidadSeleccionada, true);
+                pstmt.executeUpdate();
+                System.out.println("Habilidad equipada con exito");
+                LoggerCustom.info("[" + LocalDateTime.now() + "] INFO: Al personaje " + personajeSeleccionado.getNombre() + " se le ha añadido la habilidad " + habilidadSeleccionada.getNombre());
+            } catch (SQLException e) {
+                LoggerCustom.info("[" + LocalDateTime.now() + "] ERROR: Error al añadir la habilidad - " +e.getMessage());
+                e.printStackTrace();
+            }
+        }
     }
 
 }

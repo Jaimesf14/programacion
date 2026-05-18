@@ -48,7 +48,7 @@ public class Menus {
                 case 4 -> gestionMundo.cobroImpuestos();
                 case 5 -> gestionMundo.censoClases();
                 case 6 -> gestionMundo.jugadoresMasRicos();
-                case 9 -> motorCombate.eleccionHabilidades();
+                case 7 -> motorCombate.eleccionHabilidades();
                // case 8 -> ;
 
             }
