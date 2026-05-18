@@ -11,10 +11,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.List;
-import java.util.Scanner;
+import java.util.*;
 
 import static rpg.dao.ConexionDB.getConnection;
 
@@ -121,7 +118,11 @@ public class GestionMundo {
 
         System.out.println("Selecciona la id del personaje que quieres que cambie de ciudad: ");
         for (Personajes p : personajes){
-            System.out.println("- ID: " + p.getId() + " - Nombre: " + p.getNombre() + " - Nivel: " + p.getNivel() +  " - Ciudad actual: " + p.getCiudades().getNombre());
+            String nombreCiudad =  "Sin ciudad";
+            if (p.getCiudades() != null) {
+                nombreCiudad = p.getCiudades().getNombre();
+            }
+            System.out.println("- ID: " + p.getId() + " - Nombre: " + p.getNombre() + " - Nivel: " + p.getNivel() +  " - Ciudad actual: " + nombreCiudad);
         }
         int idPersonaje = s.nextInt();
         s.nextLine();
@@ -239,6 +240,7 @@ public class GestionMundo {
     //------------------------------------------------------------------------------------------------------------------
 
     public void cobroImpuestos(){
+        System.out.println("===COBRO DE IMPUESTOS===");
         ciudadesDAO.cargarCiudades();
         List<Ciudades> ciudades = ciudadesDAO.getLista_ciudades();
 
@@ -312,7 +314,48 @@ public class GestionMundo {
 
     //------------------------------------------------------------------------------------------------------------------
 
-    public void jugadoresRicos(){
+    public void censoClases(){
+        System.out.println("===CENSO DE CLASES===");
+        personajesDAO.cargarPersonajes();
+        List<Personajes> personajes = personajesDAO.getLista_personajes();
+        HashMap<String, Integer> censoClases = new HashMap<>();
 
+        for (int i = 0; i < personajes.size(); i++){
+            Personajes p = personajes.get(i);
+            String clase =  p.getClasesRPG().getNombre();
+
+            if (censoClases.containsKey(clase)){
+                int cantidadActual = censoClases.get(clase);
+                censoClases.put(clase, cantidadActual + 1 );
+
+            } else {
+                censoClases.put(clase, 1);
+            }
+        }
+
+        for (Map.Entry<String, Integer>imprimirCenso : censoClases.entrySet()){
+            String clase = imprimirCenso.getKey();
+            int cantidad = imprimirCenso.getValue();
+            System.out.println(clase + " : " + cantidad);
+        }
+    }
+
+    //------------------------------------------------------------------------------------------------------------------
+
+    public void jugadoresMasRicos(){
+        System.out.println("===JUGADORES MAS RICOS===");
+        personajesDAO.cargarPersonajes();
+        List<Personajes> personajes  = personajesDAO.getLista_personajes();
+
+        Collections.sort(personajes, new Comparator<Personajes>() {
+            @Override
+            public int compare(Personajes p1, Personajes p2) {
+                return Integer.compare(p2.getOro(), p1.getOro());
+            }
+        });
+
+        for (int i = 0; i < 3 && i < personajes.size(); i++) {
+            System.out.println((i + 1) + ". " + personajes.get(i).getNombre() + " = " + personajes.get(i).getOro());
+        }
     }
 }
