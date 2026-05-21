@@ -70,6 +70,33 @@ public class HabilidadesDAO {
 
     //------------------------------------------------------------------------------------------------------------------
 
+    public List<Habilidades> getHabilidadesClase(int idClase){
+        List<Habilidades> habilidadesClase = new ArrayList<>();
+        String sql = "SELECT * FROM habilidades WHERE id_clase = ?";
+        try(Connection conn = getConnection();
+            PreparedStatement pstmt = conn.prepareStatement(sql)){
+            pstmt.setInt(1, idClase);
+            ResultSet rs = pstmt.executeQuery();
+            while (rs.next()){
+                int id = rs.getInt("id");
+                String nombre = rs.getString("nombre");
+                int dano_base = rs.getInt("dano_base");
+                int usos_maximos = rs.getInt("usos_maximos");
+                int id_clase = rs.getInt("id_clase");
+                Habilidades habilidades = new Habilidades(id, nombre, dano_base, usos_maximos, id_clase);
+                habilidadesClase.add(habilidades);
+
+            }
+
+        } catch (SQLException e) {
+            System.out.println("Error al cargar las habilidades: "  + e.getMessage());
+            e.printStackTrace();
+        }
+        return  habilidadesClase;
+    }
+
+    //------------------------------------------------------------------------------------------------------------------
+
     public Habilidades buscarHabilidadesPorId(int  id){
         for (Habilidades h : lista_habilidades){
             if (h.getId() == id){

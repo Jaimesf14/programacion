@@ -9,6 +9,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.time.LocalDateTime;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Scanner;
@@ -52,14 +53,19 @@ public class MotorCombate {
             System.out.println("Id del personaje no valido");
             return;
         }
-
         habilidadesDAO.cargarHabilidades();
-        List<Habilidades> habilidades = habilidadesDAO.getLista_habilidades();
-        System.out.println("Selecciona la ID de la habilidad que quieres equipar al personaje: ");
-        for (Map.Entry <Habilidades, Boolean> entrada : personajeSeleccionado.getHabilidades_equipadas().entrySet()){
-            System.out.println("-ID: " + entrada.getKey().getId() + " - Nombre: " + entrada.getKey().getNombre() + " - Daño: " + entrada.getKey().getDaño_base() + " - Numero de usos: " + entrada.getKey().getUsos_maximos() );
-        }
 
+        List<Habilidades> habilidadesClase = habilidadesDAO.getHabilidadesClase(personajeSeleccionado.getClasesRPG().getId());
+
+        HashMap<Habilidades, Boolean> estaEquipada = habilidadesDAO.getHabilidadeEquipadas(personajeSeleccionado.getId());
+        personajeSeleccionado.setHabilidades_equipadas(estaEquipada);
+
+        System.out.println("Selecciona la ID de la habilidad que quieres equipar al personaje: ");
+
+        for (Habilidades h : habilidadesClase){
+
+            System.out.println("-ID: " + h.getId() + " - Nombre: " + h.getNombre() + " - Daño: " + h.getDaño_base() + " - Numero de usos: " + h.getUsos_maximos());
+        }
         int idHabilidad = s.nextInt();
         s.nextLine();
 
@@ -69,8 +75,29 @@ public class MotorCombate {
             return;
         }
 
-        if (personajeSeleccionado.getHabilidades_equipadas().get(habilidadSeleccionada)) {
-            System.out.println("Esta habilidad ya esta seleccionada.");
+        Boolean equipada =
+                personajeSeleccionado
+                        .getHabilidades_equipadas()
+                        .get(habilidadSeleccionada);
+
+        if (equipada != null && equipada) {
+
+            System.out.println(
+                    "Esta habilidad ya esta seleccionada."
+            );
+
+            return;
+        }
+
+        if (estaEquipada.containsKey(habilidadSeleccionada)) {
+
+            String sql =
+                    "UPDATE personajes_habilidades " +
+                            "SET equipada_combate = true " +
+                            "WHERE id_personaje = ? " +
+                            "AND id_habilidad = ?";
+        //if (personajeSeleccionado.getHabilidades_equipadas().get(habilidadSeleccionada)) {
+        //    System.out.println("Esta habilidad ya esta seleccionada.");
         } else {
             String sql = "UPDATE personajes_habilidades SET equipada_combate = ? WHERE id_personaje = ? AND id_habilidad = ?";
             try(Connection conn = getConnection();
