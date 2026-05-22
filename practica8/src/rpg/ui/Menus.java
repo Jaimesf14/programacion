@@ -48,8 +48,8 @@ public class Menus {
                 case 4 -> gestionMundo.cobroImpuestos();
                 case 5 -> gestionMundo.censoClases();
                 case 6 -> gestionMundo.jugadoresMasRicos();
-                case 7 -> motorCombate.eleccionHabilidades();
-               // case 8 -> ;
+                case 7 -> gestionMundo.eleccionHabilidades();
+                case 8 -> motorCombate.combate();
 
             }
         } while (eleccion != 9);

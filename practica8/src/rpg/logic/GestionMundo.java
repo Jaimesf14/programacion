@@ -358,4 +358,77 @@ public class GestionMundo {
             System.out.println((i + 1) + ". " + personajes.get(i).getNombre() + " = " + personajes.get(i).getOro());
         }
     }
+
+    public void eleccionHabilidades(){
+        System.out.println("===ELECCION DE HABILIDADES===");
+        personajesDAO.cargarPersonajes();
+        List<Personajes>personajes = personajesDAO.getLista_personajes();
+        System.out.println("Selecciona la id del personaje el cual quieres que elija habilidades: ");
+        for (Personajes p : personajes){
+            System.out.println("-ID: " + p.getId() + " - Nombre: " + p.getNombre());
+        }
+
+        int idPersonaje = s.nextInt();
+        s.nextLine();
+
+        Personajes personajeSeleccionado = personajesDAO.buscarPersonajesPorId(idPersonaje);
+        if (personajeSeleccionado == null){
+            System.out.println("Id del personaje no valido");
+            return;
+        }
+        habilidadesDAO.cargarHabilidades();
+
+        List<Habilidades> habilidadesClase = habilidadesDAO.getHabilidadesClase(personajeSeleccionado.getClasesRPG().getId());
+
+        HashMap<Habilidades, Boolean> estaEquipada = habilidadesDAO.getHabilidadeEquipadas(personajeSeleccionado.getId());
+        personajeSeleccionado.setHabilidades_equipadas(estaEquipada);
+
+        System.out.println("Selecciona la ID de la habilidad que quieres equipar al personaje: ");
+
+        for (Habilidades h : habilidadesClase){
+
+            System.out.println("-ID: " + h.getId() + " - Nombre: " + h.getNombre() + " - Daño: " + h.getDaño_base() + " - Numero de usos: " + h.getUsos_maximos());
+        }
+        int idHabilidad = s.nextInt();
+        s.nextLine();
+
+        Habilidades habilidadSeleccionada = habilidadesDAO.buscarHabilidadesPorId(idHabilidad);
+        if (habilidadSeleccionada == null){
+            System.out.println("Id de la habilidad no valida");
+            return;
+        }
+
+        Boolean equipada = personajeSeleccionado.getHabilidades_equipadas().get(habilidadSeleccionada);
+
+        if (equipada != null && equipada) {
+
+            System.out.println("Esta habilidad ya esta seleccionada");
+            return;
+        }
+
+        String sql;
+
+        if (estaEquipada.containsKey(habilidadSeleccionada)) {
+
+            sql = "UPDATE personajes_habilidades SET equipada_combate = true WHERE id_personaje = ? AND id_habilidad = ?";
+
+        } else {
+            sql = "INSERT INTO personajes_habilidades (equipada_combate, id_personaje, id_habilidad) VALUES (?, ?, ?)";
+
+        }
+        try(Connection conn = getConnection();
+            PreparedStatement pstmt = conn.prepareStatement(sql)){
+            pstmt.setBoolean(1, true);
+            pstmt.setInt(2, personajeSeleccionado.getId());
+            pstmt.setInt(3, habilidadSeleccionada.getId());
+            personajeSeleccionado.getHabilidades_equipadas().put(habilidadSeleccionada, true);
+            pstmt.executeUpdate();
+            System.out.println("Habilidad equipada con exito");
+            LoggerCustom.info("[" + LocalDateTime.now() + "] INFO: Al personaje " + personajeSeleccionado.getNombre() + " se le ha añadido la habilidad " + habilidadSeleccionada.getNombre());
+        } catch (SQLException e) {
+            LoggerCustom.info("[" + LocalDateTime.now() + "] ERROR: Error al añadir la habilidad - " +e.getMessage());
+            e.printStackTrace();
+        }
+
+    }
 }
