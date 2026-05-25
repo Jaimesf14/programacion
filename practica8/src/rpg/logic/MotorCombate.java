@@ -52,6 +52,7 @@ public class MotorCombate {
         int id1 = s.nextInt();
         s.nextLine();
 
+
         Personajes personaje1 = personajesDAO.buscarPersonajesPorId(id1);
         if (personaje1 ==  null){
             System.out.println("Id del personaje no valido");
@@ -65,10 +66,32 @@ public class MotorCombate {
         int id2 = s.nextInt();
         s.nextLine();
 
+        if (id1 == id2){
+            System.out.println("No puedes elegir el mismo personaje");
+            return;
+        }
+
         Personajes personaje2 = personajesDAO.buscarPersonajesPorId(id2);
         if (personaje2 ==  null){
             System.out.println("Id del personaje no valido");
             return;
+        }
+
+        HashMap<Habilidades, Integer> usosRestantes = new HashMap<>();
+
+        personaje1.setHabilidades_equipadas(habilidadesDAO.getHabilidadeEquipadas(personaje1.getId()));
+        personaje2.setHabilidades_equipadas(habilidadesDAO.getHabilidadeEquipadas(personaje2.getId()));
+
+        for (Map.Entry<Habilidades, Boolean> h : personaje1.getHabilidades_equipadas().entrySet()){
+            if (h.getValue() == true){
+                usosRestantes.put(h.getKey(), h.getKey().getUsos_maximos());
+            }
+        }
+
+        for (Map.Entry<Habilidades, Boolean> h : personaje2.getHabilidades_equipadas().entrySet()){
+            if (h.getValue() == true){
+                usosRestantes.put(h.getKey(), h.getKey().getUsos_maximos());
+            }
         }
 
         System.out.println("===COMBATE===");
@@ -91,9 +114,11 @@ public class MotorCombate {
             }
 
             System.out.println("| Turno de " +atacante.getNombre()+ " de atacar.");
-            System.out.println("| Elige el ide de la habilidad que quieres que use: ");
-            for (Map.Entry<Habilidades, Boolean> h:atacante.getHabilidades_equipadas().entrySet()){
-                System.out.println("- ID: " + h.getKey().getId() + " - Nombre: " + h.getKey().getNombre() + " - Daño: " + h.getKey().getDaño_base() + " - Usos: " + h.getKey().getUsos_maximos());
+            System.out.println("| Elige el id de la habilidad que quieres que use: ");
+            for (Map.Entry<Habilidades, Boolean> h : atacante.getHabilidades_equipadas().entrySet()){
+                if (h.getValue() == true){
+                    System.out.println("- ID: " + h.getKey().getId() + " - Nombre: " + h.getKey().getNombre() + " - Daño: " + h.getKey().getDaño_base() + " - Usos: " + usosRestantes.get(h.getKey()));
+                }
             }
             int idHabilidad = s.nextInt();
             s.nextLine();
@@ -104,14 +129,14 @@ public class MotorCombate {
                 return;
             }
 
-            if (habilidadSeleccionada.getUsos_maximos()>0){
+            if (usosRestantes.get(habilidadSeleccionada)>0){
                 int danioTotal = habilidadSeleccionada.getDaño_base();
                 defensor.setVida_actual(defensor.getVida_actual()-danioTotal);
-                habilidadSeleccionada.setUsos_maximos(habilidadSeleccionada.getUsos_maximos()-1);
+
                 System.out.println("| El personaje " + atacante.getNombre() + " ha usado la habilidad " + habilidadSeleccionada.getNombre());
 
 
-                String sql = "UPDATE personajes SET vida_actual = ? WHERE id = ?";
+                /*String sql = "UPDATE personajes SET vida_actual = ? WHERE id = ?";
                 try(Connection conn = getConnection();
                     PreparedStatement pstmt = conn.prepareStatement(sql)){
                     pstmt.setInt(1, defensor.getVida_actual());
@@ -121,19 +146,10 @@ public class MotorCombate {
                 } catch (SQLException e) {
                     LoggerCustom.info("[" + LocalDateTime.now() + "] ERROR: Error al  restarle vida al personaje " + defensor.getNombre() + " - " +e.getMessage());
                     e.printStackTrace();
-                }
+                }*/
 
-                String sql2 = "UPDATE habilidades SET usos_maximos = ? WHERE id = ?";
-                try(Connection conn = getConnection();
-                    PreparedStatement pstmt = conn.prepareStatement(sql2)){
-                    pstmt.setInt(1, habilidadSeleccionada.getUsos_maximos());
-                    pstmt.setInt(2, habilidadSeleccionada.getId());
-                    pstmt.executeUpdate();
-
-                } catch (SQLException e) {
-                    LoggerCustom.info("[" + LocalDateTime.now() + "] ERROR: Error al restarle un uso a la habilidad " + habilidadSeleccionada.getNombre() + " - " +e.getMessage());
-                    e.printStackTrace();
-                }
+               int usos = usosRestantes.get(habilidadSeleccionada);
+                usosRestantes.put(habilidadSeleccionada, usos-1);
 
             } else {
                 System.out.println("Pierde turno");
