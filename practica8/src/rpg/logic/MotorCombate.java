@@ -3,18 +3,11 @@ package rpg.logic;
 import rpg.dao.*;
 import rpg.model.Habilidades;
 import rpg.model.Personajes;
-import rpg.utils.LoggerCustom;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
-import java.time.LocalDateTime;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Scanner;
-
-import static rpg.dao.ConexionDB.getConnection;
 
 public class MotorCombate {
     private Scanner s = new Scanner(System.in);
@@ -82,16 +75,27 @@ public class MotorCombate {
         personaje1.setHabilidades_equipadas(habilidadesDAO.getHabilidadeEquipadas(personaje1.getId()));
         personaje2.setHabilidades_equipadas(habilidadesDAO.getHabilidadeEquipadas(personaje2.getId()));
 
-        for (Map.Entry<Habilidades, Boolean> h : personaje1.getHabilidades_equipadas().entrySet()){
-            if (h.getValue() == true){
-                usosRestantes.put(h.getKey(), h.getKey().getUsos_maximos());
+        int numHabilidades1 = 0;
+        for (Boolean estaEquipada : personaje1.getHabilidades_equipadas().values()){
+            if (estaEquipada == true){
+                numHabilidades1 ++;
             }
         }
+        if (numHabilidades1<3){
+            System.out.println("El personaje " + personaje1.getNombre() +" no dispone de las suficientes habilidades para combatir");
+            return;
+        }
 
-        for (Map.Entry<Habilidades, Boolean> h : personaje2.getHabilidades_equipadas().entrySet()){
-            if (h.getValue() == true){
-                usosRestantes.put(h.getKey(), h.getKey().getUsos_maximos());
+        int numHabilidades2 = 0;
+        for (Boolean estaEquipada : personaje2.getHabilidades_equipadas().values()){
+            if (estaEquipada == true){
+                numHabilidades2 ++;
             }
+        }
+        if (numHabilidades2<3){
+            System.out.println("El personaje " + personaje2.getNombre() +" no dispone de las suficientes habilidades para combatir");
+
+            return;
         }
 
         System.out.println("===COMBATE===");
@@ -134,19 +138,6 @@ public class MotorCombate {
                 defensor.setVida_actual(defensor.getVida_actual()-danioTotal);
 
                 System.out.println("| El personaje " + atacante.getNombre() + " ha usado la habilidad " + habilidadSeleccionada.getNombre());
-
-
-                /*String sql = "UPDATE personajes SET vida_actual = ? WHERE id = ?";
-                try(Connection conn = getConnection();
-                    PreparedStatement pstmt = conn.prepareStatement(sql)){
-                    pstmt.setInt(1, defensor.getVida_actual());
-                    pstmt.setInt(2, defensor.getId());
-                    pstmt.executeUpdate();
-
-                } catch (SQLException e) {
-                    LoggerCustom.info("[" + LocalDateTime.now() + "] ERROR: Error al  restarle vida al personaje " + defensor.getNombre() + " - " +e.getMessage());
-                    e.printStackTrace();
-                }*/
 
                int usos = usosRestantes.get(habilidadSeleccionada);
                 usosRestantes.put(habilidadSeleccionada, usos-1);
