@@ -269,14 +269,14 @@ public class GestionMundo {
 
             }
 
-            int oro = p.getOro() -20;
+            double oro = p.getOro() -20;
             p.setOro(oro);
 
             String sql = "UPDATE Personajes set oro = ? WHERE id = ?";
 
             try(Connection conn = getConnection();
                 PreparedStatement pstmt  = conn.prepareStatement(sql)){
-                pstmt.setInt(1, oro);
+                pstmt.setDouble(1, oro);
                 pstmt.setInt(2, p.getId());
                 pstmt.executeUpdate();
 
@@ -350,7 +350,7 @@ public class GestionMundo {
         Collections.sort(personajes, new Comparator<Personajes>() {
             @Override
             public int compare(Personajes p1, Personajes p2) {
-                return Integer.compare(p2.getOro(), p1.getOro());
+                return Double.compare(p2.getOro(), p1.getOro());
             }
         });
 
@@ -408,19 +408,23 @@ public class GestionMundo {
 
         String sql;
 
-        if (estaEquipada.containsKey(habilidadSeleccionada)) {
-
+        if (estaEquipada.containsKey(habilidadSeleccionada)){
             sql = "UPDATE personajes_habilidades SET equipada_combate = true WHERE id_personaje = ? AND id_habilidad = ?";
-
         } else {
             sql = "INSERT INTO personajes_habilidades (equipada_combate, id_personaje, id_habilidad) VALUES (?, ?, ?)";
-
         }
+
         try(Connection conn = getConnection();
-            PreparedStatement pstmt = conn.prepareStatement(sql)){
+            PreparedStatement pstmt = conn.prepareStatement(sql)) {
+            if (estaEquipada.containsKey(habilidadSeleccionada)){
+                pstmt.setInt(1, personajeSeleccionado.getId());
+                pstmt.setInt(2, habilidadSeleccionada.getId());
+
+            }else{
             pstmt.setBoolean(1, true);
             pstmt.setInt(2, personajeSeleccionado.getId());
             pstmt.setInt(3, habilidadSeleccionada.getId());
+            }
             personajeSeleccionado.getHabilidades_equipadas().put(habilidadSeleccionada, true);
             pstmt.executeUpdate();
             System.out.println("Habilidad equipada con exito");

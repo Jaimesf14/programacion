@@ -2,12 +2,20 @@ package rpg.logic;
 
 import rpg.dao.*;
 import rpg.model.Habilidades;
+import rpg.model.Items;
 import rpg.model.Personajes;
+import rpg.utils.LoggerCustom;
 
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
+import java.time.LocalDateTime;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Scanner;
+
+import static rpg.dao.ConexionDB.getConnection;
 
 public class MotorCombate {
     private Scanner s = new Scanner(System.in);
@@ -70,10 +78,50 @@ public class MotorCombate {
             return;
         }
 
+        System.out.println("---ESTADISTICAS DEL JUGADOR 1---");
+        double ataqueFisicoP1 = 0.00;
+        for (Map.Entry<Items, Integer> i: personaje1.getInventario().entrySet()){
+            ataqueFisicoP1 = ataqueFisicoP1 + (i.getKey().getBonificador_ataque() * i.getValue());
+        }
+        ataqueFisicoP1 = ataqueFisicoP1 + personaje1.getRazas().getBonificador_fuerza();
+        System.out.println("-Ataque fisico total: " + ataqueFisicoP1);
+
+        double defensaTotalP1 = 0.00;
+        for (Map.Entry<Items, Integer> i: personaje1.getInventario().entrySet()){
+            defensaTotalP1 = defensaTotalP1 + (i.getKey().getBonificador_defensa() * i.getValue());
+        }
+        System.out.println("-Defensa total: " + defensaTotalP1);
+
+        System.out.println("---ESTADISTICAS DEL JUGADOR 2---");
+        double ataqueFisicoP2 = 0.00;
+        for (Map.Entry<Items, Integer> i: personaje2.getInventario().entrySet()){
+            ataqueFisicoP2 = ataqueFisicoP2 + (i.getKey().getBonificador_ataque() * i.getValue());
+        }
+        ataqueFisicoP2 = ataqueFisicoP2 + personaje2.getRazas().getBonificador_fuerza();
+        System.out.println("-Ataque fisico total: " + ataqueFisicoP2);
+
+        double defensaTotalP2 = 0.00;
+        for (Map.Entry<Items, Integer> i: personaje2.getInventario().entrySet()){
+            defensaTotalP2 = defensaTotalP2 + (i.getKey().getBonificador_defensa() * i.getValue());
+        }
+        System.out.println("-Defensa total: " + defensaTotalP2);
+
         HashMap<Habilidades, Integer> usosRestantes = new HashMap<>();
 
         personaje1.setHabilidades_equipadas(habilidadesDAO.getHabilidadeEquipadas(personaje1.getId()));
         personaje2.setHabilidades_equipadas(habilidadesDAO.getHabilidadeEquipadas(personaje2.getId()));
+
+        for (Map.Entry<Habilidades, Boolean> h : personaje1.getHabilidades_equipadas().entrySet()){
+            if (h.getValue()){
+                usosRestantes.put(h.getKey(), h.getKey().getUsos_maximos());
+            }
+        }
+
+        for (Map.Entry<Habilidades, Boolean> h : personaje2.getHabilidades_equipadas().entrySet()){
+            if (h.getValue()){
+                usosRestantes.put(h.getKey(), h.getKey().getUsos_maximos());
+            }
+        }
 
         int numHabilidades1 = 0;
         for (Boolean estaEquipada : personaje1.getHabilidades_equipadas().values()){
@@ -105,6 +153,8 @@ public class MotorCombate {
             System.out.println("| Datos: |");
             System.out.println("| Personaje 1 | ID: " + personaje1.getId() + " - Nombre: " + personaje1.getNombre() +" - Vida: "+ personaje1.getVida_actual());
             System.out.println("| Personaje 2 | ID: " + personaje2.getId() + " - Nombre: " + personaje2.getNombre() +" - Vida: "+ personaje2.getVida_actual());
+            System.out.println("---------------------------------------------------------");
+
 
             Personajes atacante;
             Personajes defensor;
@@ -134,8 +184,14 @@ public class MotorCombate {
             }
 
             if (usosRestantes.get(habilidadSeleccionada)>0){
-                int danioTotal = habilidadSeleccionada.getDaño_base();
-                defensor.setVida_actual(defensor.getVida_actual()-danioTotal);
+                double danioTotal;
+                if (turno == 1){
+                    danioTotal = habilidadSeleccionada.getDaño_base() - (defensaTotalP2/2);
+                    defensor.setVida_actual(defensor.getVida_actual()-danioTotal);
+                } else {
+                    danioTotal = habilidadSeleccionada.getDaño_base() - (defensaTotalP1/2);
+                    defensor.setVida_actual(defensor.getVida_actual()-danioTotal);
+                }
 
                 System.out.println("| El personaje " + atacante.getNombre() + " ha usado la habilidad " + habilidadSeleccionada.getNombre());
 
@@ -143,7 +199,17 @@ public class MotorCombate {
                 usosRestantes.put(habilidadSeleccionada, usos-1);
 
             } else {
-                System.out.println("Pierde turno");
+                double danioTotal;
+                if (turno == 1){
+                    danioTotal = ataqueFisicoP1 - (defensaTotalP2/2);
+                    defensor.setVida_actual(defensor.getVida_actual()-danioTotal);
+
+                }else{
+                    danioTotal =ataqueFisicoP2 - (defensaTotalP1/2);
+                    defensor.setVida_actual(defensor.getVida_actual()-danioTotal);
+
+                }
+                System.out.println("| El personaje " + atacante.getNombre() + " ha el ataque basico");
             }
 
             //Cambiar turno
@@ -156,11 +222,41 @@ public class MotorCombate {
             cont++;
         }
         System.out.println("-------------------------------------------------------------------------------------------------------------------------------------------");
+        Personajes ganador;
+        Personajes perdedor;
         if (personaje1.getVida_actual()>0){
-            System.out.println("| El ganador es: " + personaje1.getNombre());
+            ganador = personaje1;
+            perdedor =personaje2;
         } else{
-            System.out.println("| El ganador es: " + personaje2.getNombre());
+            ganador = personaje2;
+            perdedor = personaje1;
         }
+
+        double oroRobado = perdedor.getOro()*0.20;
+        ganador.setOro(ganador.getOro() + oroRobado);
+        perdedor.setOro(perdedor.getOro()-oroRobado);
+        String sql = "UPDATE  PERSONAJES SET oro =? WHERE id = ?";
+        try(Connection conn = getConnection()){
+            PreparedStatement pstmt = conn.prepareStatement(sql);
+            pstmt.setDouble(1, ganador.getOro());
+            pstmt.setInt(2,ganador.getId());
+            pstmt.executeUpdate();
+
+            PreparedStatement pstmtPerdedor = conn.prepareStatement(sql);
+            pstmtPerdedor.setDouble(1, perdedor.getOro());
+            pstmtPerdedor.setInt(2, perdedor.getId());
+            pstmtPerdedor.executeUpdate();
+
+            LoggerCustom.info("[" + LocalDateTime.now() + "] INFO: El personaje " + ganador.getNombre() + " ha ganado el combate. Recibirá " + oroRobado + " por parte del personaje perdedor " + perdedor.getNombre());
+
+            System.out.println("El personaje " + ganador.getNombre() + " ha ganado el combate. Recibirá " + oroRobado + " por parte del personaje perdedor " + perdedor.getNombre());
+
+
+        } catch (SQLException e) {
+            LoggerCustom.info("[" + LocalDateTime.now() + "] ERROR: Error al actualizar el oro del personaje ganador - " +e.getMessage());
+            e.printStackTrace();
+        }
+
         System.out.println("-------------------------------------------------------------------------------------------------------------------------------------------");
     }
 

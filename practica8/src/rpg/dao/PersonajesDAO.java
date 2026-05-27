@@ -44,7 +44,7 @@ public class PersonajesDAO {
                 int id = rs.getInt("id");
                 String nombre = rs.getString("nombre");
                 int nivel = rs.getInt("nivel");
-                int oro = rs.getInt("oro");
+                int oro = rs.getDouble("oro");
                 int vida_actual = rs.getInt("vida_actual");
                 int id_raza = rs.getInt("id_raza");
                 Razas razas = razasDAO.buscarRazaPorId(id_raza);
@@ -75,9 +75,9 @@ public class PersonajesDAO {
         ps.setInt(2, p.getRazas().getId());
         ps.setInt(3, p.getClasesRPG().getId());
         ps.setInt(4, p.getNivel());
-        ps.setInt(5, p.getVida_actual());
+        ps.setDouble(5, p.getVida_actual());
         ps.setInt(6, p.getCiudades().getId());
-        ps.setInt(7, p.getOro());
+        ps.setDouble(7, p.getOro());
         ps.executeUpdate();
 
         } catch (SQLException e){

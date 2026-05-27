@@ -6,15 +6,15 @@ public class Personajes {
     private int id;
     private String nombre;
     private int nivel;
-    private int oro;
-    private int vida_actual;
+    private double oro;
+    private double vida_actual;
     private Razas razas;
     private ClasesRPG clasesRPG;
     private Ciudades ciudades;
     private HashMap<Items, Integer> inventario;
     private HashMap<Habilidades, Boolean> habilidades_equipadas;
 
-    public Personajes(int id, String nombre, int nivel, int oro, int vida_actual, Razas razas, ClasesRPG clasesRPG, Ciudades ciudades) {
+    public Personajes(int id, String nombre, int nivel, double oro, double vida_actual, Razas razas, ClasesRPG clasesRPG, Ciudades ciudades) {
         this.id = id;
         this.nombre = nombre;
         this.nivel = nivel;
@@ -51,19 +51,19 @@ public class Personajes {
         this.nivel = nivel;
     }
 
-    public int getOro() {
+    public double getOro() {
         return oro;
     }
 
-    public void setOro(int oro) {
+    public void setOro(double oro) {
         this.oro = oro;
     }
 
-    public int getVida_actual() {
+    public double getVida_actual() {
         return vida_actual;
     }
 
-    public void setVida_actual(int vida_actual) {
+    public void setVida_actual(double vida_actual) {
         this.vida_actual = vida_actual;
     }
 
