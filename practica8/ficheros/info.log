@@ -24,3 +24,23 @@
 [2026-05-21T14:08:42.947426331] INFO: Al personaje Jaime se le ha añadido la habilidad Punñalada Trapera
 [2026-05-27T10:14:54.129350560] ERROR: Error al añadir la habilidad - El índice de la columna está fuera de rango: 3, número de columnas: 2.
 [2026-05-27T11:36:41.627210148] INFO: Al personaje Grog el Destructor se le ha añadido la habilidad Grito de Guerra
+[2026-05-27T14:01:49.868571982] INFO: Personaje creado correctamente
+[2026-05-27T14:02:34.255818739] INFO: Personaje creado correctamente
+[2026-05-27T14:02:51.162950367] INFO: El personaje 2 ha cambiado de ciudad
+[2026-05-27T14:02:56.543067729] ERROR: Nivel insuficiente del personaje J para cambiar a la ciudad Baluarte de Piedra
+[2026-05-27T14:03:29.343841027] INFO: El personaje b ha comprado el item Espada de Madera
+[2026-05-27T14:11:30.625508207] INFO: Impuesto cobrado al personaje Grog el Destructor - Oro restante: 10.0
+[2026-05-27T14:11:30.649055112] INFO: Impuesto cobrado al personaje Eldara Sabia - Oro restante: 760.0
+[2026-05-27T14:11:30.663890571] INFO: Impuesto cobrado al personaje b - Oro restante: 30.0
+[2026-05-27T14:12:31.403956076] INFO: Al personaje a se le ha añadido la habilidad Golpe Rompehuesos
+[2026-05-27T14:12:43.626974427] INFO: Al personaje a se le ha añadido la habilidad Tajo Giratorio
+[2026-05-27T14:12:46.897116177] INFO: Al personaje a se le ha añadido la habilidad Grito de Guerra
+[2026-05-27T14:12:53.006282015] INFO: Al personaje b se le ha añadido la habilidad Golpe Rompehuesos
+[2026-05-27T14:12:58.027766818] INFO: Al personaje b se le ha añadido la habilidad Tajo Giratorio
+[2026-05-27T14:13:00.800820544] INFO: Al personaje b se le ha añadido la habilidad Grito de Guerra
+[2026-05-27T14:17:29.566806936] INFO: Al personaje b se le ha añadido la habilidad Dardo de Hielo
+[2026-05-27T14:18:29.575770422] INFO: Al personaje Jaime se le ha añadido la habilidad Punñalada Trapera
+[2026-05-27T14:18:40.392826235] INFO: Al personaje Jaime se le ha añadido la habilidad Lanzar Cuchillo
+[2026-05-27T14:18:46.743872971] INFO: Al personaje Jaime se le ha añadido la habilidad Ataque Sombra
+[2026-05-27T14:19:22.104473529] ERROR: El personaje Jaime no dispone de oro suficiente para compra el item Espada de Madera
+[2026-05-27T14:20:15.888807464] INFO: El personaje Jaime ha ganado el combate. Recibirá -4.0 por parte del personaje perdedor a

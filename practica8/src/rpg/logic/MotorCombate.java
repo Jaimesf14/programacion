@@ -105,6 +105,7 @@ public class MotorCombate {
             defensaTotalP2 = defensaTotalP2 + (i.getKey().getBonificador_defensa() * i.getValue());
         }
         System.out.println("-Defensa total: " + defensaTotalP2);
+        System.out.println(" ");
 
         HashMap<Habilidades, Integer> usosRestantes = new HashMap<>();
 
@@ -150,7 +151,7 @@ public class MotorCombate {
         while (personaje1.getVida_actual()>0 && personaje2.getVida_actual()>0){
             System.out.println("---------------------------------------------------------");
             System.out.println("| Ronda " + cont + " |");
-            System.out.println("| Datos: |");
+            System.out.println("| Datos:  |");
             System.out.println("| Personaje 1 | ID: " + personaje1.getId() + " - Nombre: " + personaje1.getNombre() +" - Vida: "+ personaje1.getVida_actual());
             System.out.println("| Personaje 2 | ID: " + personaje2.getId() + " - Nombre: " + personaje2.getNombre() +" - Vida: "+ personaje2.getVida_actual());
             System.out.println("---------------------------------------------------------");

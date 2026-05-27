@@ -44,7 +44,7 @@ public class PersonajesDAO {
                 int id = rs.getInt("id");
                 String nombre = rs.getString("nombre");
                 int nivel = rs.getInt("nivel");
-                int oro = rs.getDouble("oro");
+                double oro = rs.getDouble("oro");
                 int vida_actual = rs.getInt("vida_actual");
                 int id_raza = rs.getInt("id_raza");
                 Razas razas = razasDAO.buscarRazaPorId(id_raza);

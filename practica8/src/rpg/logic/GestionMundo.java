@@ -264,7 +264,7 @@ public class GestionMundo {
         while (iterator.hasNext()){
             Personajes p = iterator.next();
 
-            if (p.getCiudades().getId() != idCiudad){
+            if (p.getCiudades() == null || p.getCiudades().getId() != idCiudad){
                 continue;
 
             }
