@@ -261,7 +261,7 @@ public class MotorCombate {
             }
         } else {
             System.out.println("El personaje " + ganador.getNombre() + " ha ganado el combate. Recibirá " + oroRobado + " por parte del personaje perdedor " + perdedor.getNombre());
-            System.out.println("El personaje " + ganador.getNombre() + "no recibirá direno puesto  que " + perdedor.getNombre() +);
+            System.out.println("El personaje " + ganador.getNombre() + "no recibirá direno puesto  que " + perdedor.getNombre() +" no dispone de dinero");
         }
 
 
