@@ -234,29 +234,36 @@ public class MotorCombate {
         }
 
         double oroRobado = perdedor.getOro()*0.20;
-        ganador.setOro(ganador.getOro() + oroRobado);
-        perdedor.setOro(perdedor.getOro()-oroRobado);
-        String sql = "UPDATE  PERSONAJES SET oro =? WHERE id = ?";
-        try(Connection conn = getConnection()){
-            PreparedStatement pstmt = conn.prepareStatement(sql);
-            pstmt.setDouble(1, ganador.getOro());
-            pstmt.setInt(2,ganador.getId());
-            pstmt.executeUpdate();
 
-            PreparedStatement pstmtPerdedor = conn.prepareStatement(sql);
-            pstmtPerdedor.setDouble(1, perdedor.getOro());
-            pstmtPerdedor.setInt(2, perdedor.getId());
-            pstmtPerdedor.executeUpdate();
+        if (oroRobado>0){
+            ganador.setOro(ganador.getOro() + oroRobado);
+            perdedor.setOro(perdedor.getOro()-oroRobado);
+            String sql = "UPDATE  PERSONAJES SET oro =? WHERE id = ?";
+            try(Connection conn = getConnection()){
+                PreparedStatement pstmt = conn.prepareStatement(sql);
+                pstmt.setDouble(1, ganador.getOro());
+                pstmt.setInt(2,ganador.getId());
+                pstmt.executeUpdate();
 
-            LoggerCustom.info("[" + LocalDateTime.now() + "] INFO: El personaje " + ganador.getNombre() + " ha ganado el combate. Recibirá " + oroRobado + " por parte del personaje perdedor " + perdedor.getNombre());
+                PreparedStatement pstmtPerdedor = conn.prepareStatement(sql);
+                pstmtPerdedor.setDouble(1, perdedor.getOro());
+                pstmtPerdedor.setInt(2, perdedor.getId());
+                pstmtPerdedor.executeUpdate();
 
+                LoggerCustom.info("[" + LocalDateTime.now() + "] INFO: El personaje " + ganador.getNombre() + " ha ganado el combate. Recibirá " + oroRobado + " por parte del personaje perdedor " + perdedor.getNombre());
+
+                System.out.println("El personaje " + ganador.getNombre() + " ha ganado el combate. Recibirá " + oroRobado + " por parte del personaje perdedor " + perdedor.getNombre());
+
+
+            } catch (SQLException e) {
+                LoggerCustom.info("[" + LocalDateTime.now() + "] ERROR: Error al actualizar el oro del personaje ganador - " +e.getMessage());
+                e.printStackTrace();
+            }
+        } else {
             System.out.println("El personaje " + ganador.getNombre() + " ha ganado el combate. Recibirá " + oroRobado + " por parte del personaje perdedor " + perdedor.getNombre());
-
-
-        } catch (SQLException e) {
-            LoggerCustom.info("[" + LocalDateTime.now() + "] ERROR: Error al actualizar el oro del personaje ganador - " +e.getMessage());
-            e.printStackTrace();
+            System.out.println("El personaje " + ganador.getNombre() + "no recibirá direno puesto  que " + perdedor.getNombre() +);
         }
+
 
         System.out.println("-------------------------------------------------------------------------------------------------------------------------------------------");
     }

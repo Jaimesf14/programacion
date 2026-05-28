@@ -398,6 +398,18 @@ public class GestionMundo {
             return;
         }
 
+        boolean habilidadPerteneceClase = false;
+        for (Habilidades h : habilidadesClase){
+            if (h.getId()==idHabilidad){
+                habilidadPerteneceClase = true;
+            }
+        }
+
+        if (!habilidadPerteneceClase){
+            System.out.println("Esta habilidad no pertenece a la clase del personaje");
+            return;
+        }
+
         Boolean equipada = personajeSeleccionado.getHabilidades_equipadas().get(habilidadSeleccionada);
 
         if (equipada != null && equipada) {
